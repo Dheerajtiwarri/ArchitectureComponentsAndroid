@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@android:color/holo_blue_bright"
+    tools:context=".Activity.AddDataActivity">
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:padding="5dp"
+        android:background="@drawable/borderblack">
+
+        <ImageView
+            android:id="@+id/product_image"
+            android:background="@mipmap/ic_launcher"
+            android:clickable="true"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
+
+    </LinearLayout>
+
+
+
+
+    <EditText
+        android:layout_marginTop="40dp"
+        android:id="@+id/product_name"
+        android:background="@android:color/white"
+        android:paddingLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/product_name"/>
+
+    <Button
+        android:id="@+id/product_save"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="save"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="50dp"/>
+
+
+</LinearLayout>
