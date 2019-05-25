@@ -16,18 +16,23 @@ public class MyData {
     @NonNull
     public String name;
 
-    public byte[] image;
+    public String image;
 
-    public MyData(@NonNull String name, byte[] image) {
+    public MyData()
+    {
+        //this class is needed...
+    }
+
+    public MyData(@NonNull String name, String image) {
         this.name = name;
         this.image = image;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

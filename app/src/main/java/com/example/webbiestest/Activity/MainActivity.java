@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -20,7 +21,13 @@ import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
 import com.example.webbiestest.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,14 +38,19 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
 
-
+    private DatabaseReference databaseReference;
     private ProductViewModel productViewModel;
+
+    private List<MyData> myDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.v(TAG,"onCreate()");
+
+        databaseReference= FirebaseDatabase.getInstance().getReference();
+        myDataList=new ArrayList<>();
 
         setUserInterface();
     }
@@ -54,12 +66,30 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot productSnapshot:dataSnapshot.getChildren())
+                {
+                 MyData myData=productSnapshot.getValue(MyData.class);
+                    myDataList.add(myData);
+                }
+                recyclerAdapter.setData(myDataList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
         productViewModel.getAllData().observe(this, new Observer<List<MyData>>() {
             @Override
             public void onChanged(List<MyData> myData) {
-                recyclerAdapter.setData(myData);
+             //   recyclerAdapter.setData(myData);
                 Log.v(TAG,"DataSetToRecyclerAdapter");
             }
         });
@@ -75,13 +105,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
 
         if (requestCode == ADD_DATA_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            MyData myData = new MyData(data.getStringExtra(AddDataActivity.PRODUCT_NAME),data.getByteArrayExtra(AddDataActivity.PRODUCT_IMAGE));
+            MyData myData = new MyData(data.getStringExtra(AddDataActivity.PRODUCT_NAME),data.getStringExtra(AddDataActivity.PRODUCT_IMAGE));
             productViewModel.insert(myData);
             Log.v(TAG,"OnActivityResult"+"get the data");
         } else {
