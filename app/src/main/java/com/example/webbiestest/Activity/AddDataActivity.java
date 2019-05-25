@@ -53,7 +53,7 @@ public class AddDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_data);
         Log.v(TAG, "onCreate()");
 
-        databaseReference= FirebaseDatabase.getInstance().getReference();
+        databaseReference= FirebaseDatabase.getInstance().getReference("Products");
 
         setUserInterface();
 
@@ -130,10 +130,10 @@ public class AddDataActivity extends AppCompatActivity {
     public void sendData(String nameProduct,String imageProduct)
     {
 
-        String id=databaseReference.push().getKey();
+
         MyData myData=new MyData(nameProduct,imageProduct);
-        String time= String.valueOf(System.currentTimeMillis());
-        databaseReference.child("Products").setValue(myData);
+        String uploadId = databaseReference.push().getKey();
+        databaseReference.child(uploadId).setValue(myData);
     }
 
 
