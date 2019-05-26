@@ -74,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 {
                  MyData myData=productSnapshot.getValue(MyData.class);
                     myDataList.add(myData);
+
                 }
-                recyclerAdapter.setData(myDataList);
+                //recyclerAdapter.setData(myDataList);
             }
 
             @Override
@@ -89,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
         productViewModel.getAllData().observe(this, new Observer<List<MyData>>() {
             @Override
             public void onChanged(List<MyData> myData) {
-             //   recyclerAdapter.setData(myData);
                 Log.v(TAG,"DataSetToRecyclerAdapter");
+                recyclerAdapter.setData(myDataList);      //I guess this line deal with the data selection...?
+
             }
         });
 
