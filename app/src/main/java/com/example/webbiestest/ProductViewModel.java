@@ -30,7 +30,7 @@ public class ProductViewModel extends AndroidViewModel {
         return myAllData;
     }
 
-    public void insert(MyData myData) {
-        repository.insert(myData);
+    public void setData() {
+        repository.setData();
     }
 }

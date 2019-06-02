@@ -1,5 +1,6 @@
 package com.example.webbiestest.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,15 +21,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddDataActivity extends AppCompatActivity {
 
@@ -42,7 +48,10 @@ public class AddDataActivity extends AppCompatActivity {
     private Button productSave,checkImage;
 
 
-    private DatabaseReference databaseReference;
+    //FirebaseFirestore
+    private FirebaseFirestore firestore;
+
+   // private DatabaseReference databaseReference;
 
 
     private String url="";
@@ -53,7 +62,9 @@ public class AddDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_data);
         Log.v(TAG, "onCreate()");
 
-        databaseReference= FirebaseDatabase.getInstance().getReference("Products");
+        firestore=FirebaseFirestore.getInstance();
+
+     //   databaseReference= FirebaseDatabase.getInstance().getReference("Products");
 
         setUserInterface();
 
@@ -107,7 +118,7 @@ public class AddDataActivity extends AppCompatActivity {
 
                 Log.v(TAG,"productSave");
 
-                Intent intentReply = new Intent();
+                /*Intent intentReply = new Intent();
                 if (TextUtils.isEmpty(productName.getText()) || TextUtils.isEmpty(imageUrl.getText())) {
                     setResult(RESULT_CANCELED, intentReply);
                 } else {
@@ -119,7 +130,16 @@ public class AddDataActivity extends AppCompatActivity {
                     intentReply.putExtra(PRODUCT_NAME, nameProduct);
                     intentReply.putExtra(PRODUCT_IMAGE, imageProduct);
                     setResult(RESULT_OK, intentReply);
-                }
+                }*/
+
+
+                Intent intent=new Intent(AddDataActivity.this,MainActivity.class);
+                String nameProduct = productName.getText().toString();
+                String imageProduct =imageUrl.getText().toString();
+
+                sendData(nameProduct,imageProduct);
+                startActivity(intent);
+
                 finish();
 
 
@@ -129,11 +149,22 @@ public class AddDataActivity extends AppCompatActivity {
 
     public void sendData(String nameProduct,String imageProduct)
     {
+       MyData myData=new MyData(nameProduct,imageProduct);       //For FirebaseFirestore storage
+        firestore.collection("products").add(myData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(), "Your data is successfully added to database. Thank you.", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Fail to add data to database.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-
-        MyData myData=new MyData(nameProduct,imageProduct);
+       /* MyData myData=new MyData(nameProduct,imageProduct);     //For realtimeDatabase storage
         String uploadId = databaseReference.push().getKey();
-        databaseReference.child(uploadId).setValue(myData);
+        databaseReference.child(uploadId).setValue(myData);*/
     }
 
 
