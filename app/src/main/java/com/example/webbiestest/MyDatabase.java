@@ -13,12 +13,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  * Created by Dheeraj on 14-05-2019.
  * dheerajtiwarri@gmail.com
  */
-@Database(entities = {MyData.class},version = 1,exportSchema = false)
+@Database(entities = {MyData.class}, version = 1, exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract MyDao myDao();
-
-
 
 
     // marking the instance as volatile to ensure atomic access to the variable
@@ -44,7 +42,7 @@ public abstract class MyDatabase extends RoomDatabase {
     /**
      * Override the onOpen method to populate the database.
      * For this sample, we clear the database every time it is created or opened.
-     *
+     * <p>
      * If you want to populate the database only when the database is created for the 1st time,
      * override RoomDatabase.Callback()#onCreate
      */
@@ -73,8 +71,6 @@ public abstract class MyDatabase extends RoomDatabase {
             return null;
         }
     }
-
-
 
 
 }
