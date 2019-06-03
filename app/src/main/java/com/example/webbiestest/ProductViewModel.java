@@ -1,6 +1,7 @@
 package com.example.webbiestest;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -26,11 +27,15 @@ public class ProductViewModel extends AndroidViewModel {
 
     }
 
-   public LiveData<List<MyData>> getAllData() {
+    public LiveData<List<MyData>> getAllData() {
         return myAllData;
     }
 
-    public void insert(MyData myData) {
-        repository.insert(myData);
+    public void fetchDataFromFireStore() {
+        repository.fetchDataFromFireStore();
+    }
+
+    public void sendDataToFireStore(Context context, MyData myData) {
+        repository.sendDataToFireStore(context, myData);
     }
 }

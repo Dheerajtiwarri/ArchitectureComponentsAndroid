@@ -9,25 +9,31 @@ import androidx.room.PrimaryKey;
  * Created by Dheeraj on 14-05-2019.
  * dheerajtiwarri@gmail.com
  */
-@Entity(tableName ="users" )
+@Entity(tableName = "users")
 public class MyData {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
+    public int id;
+
     public String name;
 
-    public byte[] image;
+    public String image;
 
-    public MyData(@NonNull String name, byte[] image) {
+    public MyData() {
+        //this class is needed...
+    }
+
+    public MyData(String name, String image) {
         this.name = name;
         this.image = image;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

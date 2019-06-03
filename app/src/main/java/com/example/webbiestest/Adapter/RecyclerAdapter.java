@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.R;
 
@@ -30,10 +31,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewAd
 
     public List<MyData> dataList = Collections.emptyList();
     private final LayoutInflater mInflater;
+    private Context context;
 
     public RecyclerAdapter(Context context) {
 
         Log.v(TAG, "RecyclerAdapter");
+        this.context=context;
         mInflater = LayoutInflater.from(context);
 
     }
@@ -53,15 +56,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewAd
         Log.v(TAG, "onBindViewHolder");
         MyData myData = dataList.get(position);
         String name = myData.getName();
-        byte[] image = myData.getImage();
-
-        Bitmap bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
+       String image = myData.getImage();
 
         holder.textView.setText(name);
-        holder.imageView.setImageBitmap(bmp);
+        Glide.with(context).load(image).into(holder.imageView);
 
 
     }
+
+
 
     public void setData(List<MyData> myData) {
         Log.v(TAG, "setData");
