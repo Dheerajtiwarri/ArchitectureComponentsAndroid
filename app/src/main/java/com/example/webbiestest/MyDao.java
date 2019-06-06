@@ -15,7 +15,7 @@ import java.util.List;
 public interface MyDao {
 
     @Insert
-    public void addData(List<MyData> data);
+    public void addData(MyData data);
 
     @Query("select * from users")
     public LiveData<List<MyData>> readData();

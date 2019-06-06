@@ -16,6 +16,9 @@ import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
 import com.example.webbiestest.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class AddDataActivity extends AppCompatActivity {
 
@@ -25,6 +28,7 @@ public class AddDataActivity extends AppCompatActivity {
     private EditText productName, imageUrl;
     private ProductViewModel productViewModel;
     private String url = "";
+    List<MyData> myDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,8 @@ public class AddDataActivity extends AppCompatActivity {
 
         imageUrl = findViewById(R.id.image_url);
         Button checkImage = findViewById(R.id.check_image_button);
+
+        myDataList =new ArrayList<>();
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
@@ -72,8 +78,8 @@ public class AddDataActivity extends AppCompatActivity {
                 String imageProduct = imageUrl.getText().toString();
                 //set data on my data.
                 MyData myData = new MyData(nameProduct, imageProduct);
-                //call viewModel to carry data.
-                productViewModel.sendDataToFireStore(AddDataActivity.this, myData);
+
+                productViewModel.saveData(myData);
 
                 startActivity(intent);
                 finish();

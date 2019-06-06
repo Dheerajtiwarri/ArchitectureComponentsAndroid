@@ -31,11 +31,13 @@ public class ProductViewModel extends AndroidViewModel {
         return myAllData;
     }
 
+    public void saveData(MyData myDataList)
+    {
+        repository.saveData(myDataList);
+    }
+
     public void fetchDataFromFireStore() {
         repository.fetchDataFromFireStore();
     }
 
-    public void sendDataToFireStore(Context context, MyData myData) {
-        repository.sendDataToFireStore(context, myData);
-    }
 }
