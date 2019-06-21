@@ -6,6 +6,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import java.util.List;
 
@@ -16,8 +18,9 @@ import java.util.List;
 public class ProductViewModel extends AndroidViewModel {
 
     private ProductRepository repository;
+    private MyDao myDao;
 
-    private LiveData<List<MyData>> myAllData;
+    private final LiveData<PagedList<MyData>> myAllData;
 
     public ProductViewModel(@NonNull Application application) {
         super(application);
@@ -25,14 +28,22 @@ public class ProductViewModel extends AndroidViewModel {
         repository = new ProductRepository(application);
         myAllData = repository.getAllData();
 
+
+        /****
+         * it's directly get the data from the DAO without including the Repository in between.
+         * generate error RuntimeException when activity required to hit the viewModel
+         ****/
+
+        //myAllData = new LivePagedListBuilder<>(myDao.readData(), 10).build();
+
+
     }
 
-    public LiveData<List<MyData>> getAllData() {
+    public LiveData<PagedList<MyData>> getAllData() {
         return myAllData;
     }
 
-    public void saveData(MyData myDataList)
-    {
+    public void saveData(MyData myDataList) {
         repository.saveData(myDataList);
     }
 

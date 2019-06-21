@@ -6,6 +6,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,19 +27,20 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 class ProductRepository {
 
     private MyDao myDao;
-    private LiveData<List<MyData>> allMyData;
+  //  private LiveData<List<MyData>> allMyData;
     private FirebaseFirestore firebaseFirestore;
 
     ProductRepository(Application application) {
         MyDatabase db = MyDatabase.getDatabase(application);
         myDao = db.myDao();
-        allMyData = myDao.readData();
-
+       // allMyData = myDao.readData();
+       // allMyData=new LivePagedListBuilder<>(myDao.readData(),10).build();
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
-    LiveData<List<MyData>> getAllData() {
-        return allMyData;
+    LiveData<PagedList<MyData>> getAllData() {
+       // return allMyData;
+     return  new LivePagedListBuilder<>(myDao.readData(),5).build();
     }
 
     void saveData(MyData myData) {

@@ -36,7 +36,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewAd
     public RecyclerAdapter(Context context) {
 
         Log.v(TAG, "RecyclerAdapter");
-        this.context=context;
+        this.context = context;
         mInflater = LayoutInflater.from(context);
 
     }
@@ -55,15 +55,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewAd
     public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
         Log.v(TAG, "onBindViewHolder");
         MyData myData = dataList.get(position);
-        String name = myData.getName();
-       String image = myData.getImage();
+        String name = myData.getName();                  //at this point I can check the recyclerView is working properly.
+        String image = myData.getImage();
 
         holder.textView.setText(name);
         Glide.with(context).load(image).into(holder.imageView);
 
 
     }
-
 
 
     public void setData(List<MyData> myData) {

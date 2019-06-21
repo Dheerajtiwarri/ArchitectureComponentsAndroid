@@ -1,6 +1,8 @@
 package com.example.webbiestest;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
+import androidx.paging.PagedList;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -18,6 +20,8 @@ public interface MyDao {
     public void addData(MyData data);
 
     @Query("select * from users")
-    public LiveData<List<MyData>> readData();
+    //public LiveData<List<MyData>> readData();
+    DataSource.Factory<Integer, MyData> readData();
+
 
 }
