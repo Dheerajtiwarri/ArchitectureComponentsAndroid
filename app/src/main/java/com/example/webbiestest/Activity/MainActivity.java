@@ -9,9 +9,11 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.webbiestest.Adapter.DataAdapter;
 import com.example.webbiestest.Adapter.RecyclerAdapter;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
@@ -44,20 +46,37 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         floatingActionButton = findViewById(R.id.floating_button);
 
-        final RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this);
-        recyclerView.setAdapter(recyclerAdapter);
+       // final RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this);
+       // recyclerView.setAdapter(recyclerAdapter);
+
+        //with PagedListAdapter
+        final DataAdapter dataAdapter=new DataAdapter(this);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
+
         productViewModel.fetchDataFromFireStore();  //trigger view model for fetching the data.
-        productViewModel.getAllData().observe(this, new Observer<List<MyData>>() {
+
+
+        productViewModel.getAllData().observe(this, new Observer<PagedList<MyData>>() {
+            @Override
+            public void onChanged(PagedList<MyData> myData) {
+                dataAdapter.submitList(myData);
+            }
+        });
+
+        recyclerView.setAdapter(dataAdapter);
+
+        /*productViewModel.getAllData().observe(this, new Observer<List<MyData>>() {
             @Override
             public void onChanged(List<MyData> myData) {
                 Log.v(TAG, "DataSetToRecyclerAdapter");
-                recyclerAdapter.setData(myData);
+               // recyclerAdapter.setData(myData);
+
 
             }
-        });
+        });*/
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

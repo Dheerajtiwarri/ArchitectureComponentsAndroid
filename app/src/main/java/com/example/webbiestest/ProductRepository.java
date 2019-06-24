@@ -84,6 +84,8 @@ class ProductRepository {
 
     }
 
+
+
     private static class InsertAsyncTask extends AsyncTask<MyData, Void, Void> {
 
         private MyDao mAsyncTaskDao;
@@ -112,6 +114,26 @@ class ProductRepository {
             myDao.addData(lists[0]);
 
             return null;
+        }
+    }
+
+
+    public class BoundaryCallback<T> extends PagedList.BoundaryCallback<T>
+    {
+        String requestType;
+
+        public BoundaryCallback(String requestType) {
+            this.requestType = requestType;
+        }
+
+        @Override
+        public void onZeroItemsLoaded() {
+            super.onZeroItemsLoaded();
+        }
+
+        @Override
+        public void onItemAtEndLoaded(@NonNull T itemAtEnd) {
+            super.onItemAtEndLoaded(itemAtEnd);
         }
     }
 
