@@ -47,8 +47,8 @@ public class ProductViewModel extends AndroidViewModel {
         repository.saveData(myDataList);
     }
 
-    public void fetchDataFromFireStore() {
+    /*public void fetchDataFromFireStore() {
         repository.fetchDataFromFireStore();
-    }
+    }*/
 
 }

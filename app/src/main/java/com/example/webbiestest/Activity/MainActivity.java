@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
-        productViewModel.fetchDataFromFireStore();  //trigger view model for fetching the data.
+      // productViewModel.fetchDataFromFireStore();  //trigger view model for fetching the data.
 
 
         productViewModel.getAllData().observe(this, new Observer<PagedList<MyData>>() {

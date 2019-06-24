@@ -12,7 +12,9 @@ import androidx.paging.PagedList;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -27,21 +29,32 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 class ProductRepository {
 
     private MyDao myDao;
-  //  private LiveData<List<MyData>> allMyData;
+    //  private LiveData<List<MyData>> allMyData;
     private FirebaseFirestore firebaseFirestore;
+    private DocumentSnapshot ds;
+    private Query query;
+
+    private int PAGE_SIZE = 5;
 
     ProductRepository(Application application) {
         MyDatabase db = MyDatabase.getDatabase(application);
         myDao = db.myDao();
-       // allMyData = myDao.readData();
-       // allMyData=new LivePagedListBuilder<>(myDao.readData(),10).build();
+        // allMyData = myDao.readData();
+        // allMyData=new LivePagedListBuilder<>(myDao.readData(),10).build();
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
     LiveData<PagedList<MyData>> getAllData() {
-       // return allMyData;
-     return  new LivePagedListBuilder<>(myDao.readData(),5).build();
+        // return allMyData;
+        return new LivePagedListBuilder<>(
+                myDao.readData(),
+                PAGE_SIZE)
+                .setBoundaryCallback(new BoundaryCallback<MyData>())
+                .build();
+
     }
+
+    //have to implement set boundary call back.
 
     void saveData(MyData myData) {
         //insert data direct to room
@@ -56,9 +69,24 @@ class ProductRepository {
     //fetch data from fireStore.
     void fetchDataFromFireStore() {
 
-        firebaseFirestore.collection("products").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        if (ds == null) {
+            query = firebaseFirestore.collection("products")
+                    .orderBy("name")
+                    .limit(PAGE_SIZE);
+        } else {
+            query = firebaseFirestore.collection("products")
+                    .orderBy("name")
+                    .startAfter(ds)
+                    .limit(PAGE_SIZE);
+        }
+
+
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                ds=queryDocumentSnapshots.getDocuments()
+                        .get(queryDocumentSnapshots.size() -1);
 
                 for (QueryDocumentSnapshot dataSnapshot : queryDocumentSnapshots) {
                     MyData myData = dataSnapshot.toObject(MyData.class);
@@ -83,7 +111,6 @@ class ProductRepository {
         });
 
     }
-
 
 
     private static class InsertAsyncTask extends AsyncTask<MyData, Void, Void> {
@@ -117,23 +144,31 @@ class ProductRepository {
         }
     }
 
-
-    public class BoundaryCallback<T> extends PagedList.BoundaryCallback<T>
-    {
-        String requestType;
-
-        public BoundaryCallback(String requestType) {
-            this.requestType = requestType;
-        }
-
+   /* public PagedList.BoundaryCallback<T> listOfPage=new PagedList.BoundaryCallback<T>() {
         @Override
         public void onZeroItemsLoaded() {
-            super.onZeroItemsLoaded();
+           // super.onZeroItemsLoaded();
         }
 
         @Override
         public void onItemAtEndLoaded(@NonNull T itemAtEnd) {
             super.onItemAtEndLoaded(itemAtEnd);
+        }
+    };*/
+
+    public class BoundaryCallback<T> extends PagedList.BoundaryCallback<T> {
+
+        @Override
+        public void onZeroItemsLoaded() {
+            // super.onZeroItemsLoaded();
+            fetchDataFromFireStore();
+
+        }
+
+        @Override
+        public void onItemAtEndLoaded(@NonNull T itemAtEnd) {
+            //super.onItemAtEndLoaded(itemAtEnd);
+            fetchDataFromFireStore();
         }
     }
 
