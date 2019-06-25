@@ -51,7 +51,7 @@ public class AddDataActivity extends AppCompatActivity {
         imageUrl = findViewById(R.id.image_url);
         Button checkImage = findViewById(R.id.check_image_button);
 
-        myDataList =new ArrayList<>();
+        myDataList = new ArrayList<>();
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 

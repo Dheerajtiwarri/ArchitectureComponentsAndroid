@@ -1,5 +1,7 @@
 package com.example.webbiestest;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -11,13 +13,12 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "users")
 public class MyData {
+    public static final String TAG="MyData";
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
     public int id;
-
     public String name;
-
     public String image;
 
     public MyData() {
@@ -25,6 +26,8 @@ public class MyData {
     }
 
     public MyData(String name, String image) {
+        Log.v(TAG,"MyData()");
+
         this.name = name;
         this.image = image;
     }

@@ -29,6 +29,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewAd
 
     private static final String TAG = "RecyclerAdapter";
 
+    //DataAdapter which extends PagedListAdapter take place of this adapter for paging purpose.
+
     public List<MyData> dataList = Collections.emptyList();
     private final LayoutInflater mInflater;
     private Context context;

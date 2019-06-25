@@ -28,35 +28,45 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
  */
 class ProductRepository {
 
+    private final static String TAG = "ProductRepository";
+
+
     private MyDao myDao;
     //  private LiveData<List<MyData>> allMyData;
     private FirebaseFirestore firebaseFirestore;
     private DocumentSnapshot ds;
     private Query query;
 
+    private int lastIndexId;
+
     private int PAGE_SIZE = 5;
 
     ProductRepository(Application application) {
+        Log.v(TAG, "ProductRepository()");
         MyDatabase db = MyDatabase.getDatabase(application);
         myDao = db.myDao();
+
+        /****
+         * till now all the fetching data from operation will perform with the help of LivePagedListBuilder //pagination
+         * ****/
         // allMyData = myDao.readData();
-        // allMyData=new LivePagedListBuilder<>(myDao.readData(),10).build();
+
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
     LiveData<PagedList<MyData>> getAllData() {
+        Log.v(TAG, "getAllData()");
         // return allMyData;
         return new LivePagedListBuilder<>(
                 myDao.readData(),
                 PAGE_SIZE)
-                .setBoundaryCallback(new BoundaryCallback<MyData>())
+                .setBoundaryCallback(new BoundaryCallback<MyData>())   //setting the BoundaryCallback that will help to identify that what is current requirement of application regarding data.
                 .build();
-
     }
 
-    //have to implement set boundary call back.
-
     void saveData(MyData myData) {
+        Log.v(TAG, "saveData()");
+
         //insert data direct to room
         new InsertDataInRoomAsyncTask(myDao).execute(myData);
 
@@ -68,12 +78,15 @@ class ProductRepository {
 
     //fetch data from fireStore.
     void fetchDataFromFireStore() {
+        Log.v(TAG, "fetchDataFromFireStore()");
 
-        if (ds == null) {
+        if (lastIndexId == 0) {
+
             query = firebaseFirestore.collection("products")
                     .orderBy("name")
                     .limit(PAGE_SIZE);
         } else {
+
             query = firebaseFirestore.collection("products")
                     .orderBy("name")
                     .startAfter(ds)
@@ -85,8 +98,13 @@ class ProductRepository {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                ds=queryDocumentSnapshots.getDocuments()
-                        .get(queryDocumentSnapshots.size() -1);
+                if (lastIndexId > 0) {
+                    lastIndexId = queryDocumentSnapshots.size() - 1;
+                    ds = queryDocumentSnapshots.getDocuments()
+                            .get(lastIndexId);
+
+                }
+
 
                 for (QueryDocumentSnapshot dataSnapshot : queryDocumentSnapshots) {
                     MyData myData = dataSnapshot.toObject(MyData.class);
@@ -98,6 +116,8 @@ class ProductRepository {
 
     //send data to fireStore.
     public void sendDataToFireStore(MyData myData) {
+        Log.v(TAG, "sendDataToFireStore()");
+
         firebaseFirestore.collection("products").add(myData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
@@ -123,6 +143,8 @@ class ProductRepository {
 
         @Override
         protected Void doInBackground(final MyData... params) {
+            Log.v(TAG, "InsertAsyncTask.doInBackground()");
+
             mAsyncTaskDao.addData(params[0]);
             return null;
         }
@@ -138,36 +160,28 @@ class ProductRepository {
 
         @Override
         protected Void doInBackground(MyData... lists) {
+            Log.v(TAG, "InsertDataInRoomAsyncTask.doInBackground()");
+
             myDao.addData(lists[0]);
 
             return null;
         }
     }
 
-   /* public PagedList.BoundaryCallback<T> listOfPage=new PagedList.BoundaryCallback<T>() {
-        @Override
-        public void onZeroItemsLoaded() {
-           // super.onZeroItemsLoaded();
-        }
-
-        @Override
-        public void onItemAtEndLoaded(@NonNull T itemAtEnd) {
-            super.onItemAtEndLoaded(itemAtEnd);
-        }
-    };*/
 
     public class BoundaryCallback<T> extends PagedList.BoundaryCallback<T> {
 
         @Override
         public void onZeroItemsLoaded() {
-            // super.onZeroItemsLoaded();
-            fetchDataFromFireStore();
+            Log.v(TAG, "onZeroItemsLoaded()");
 
+            fetchDataFromFireStore();
         }
 
         @Override
         public void onItemAtEndLoaded(@NonNull T itemAtEnd) {
-            //super.onItemAtEndLoaded(itemAtEnd);
+            Log.v(TAG, "onItemAtEndLoaded()");
+
             fetchDataFromFireStore();
         }
     }
