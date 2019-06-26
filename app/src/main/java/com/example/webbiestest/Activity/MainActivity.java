@@ -1,34 +1,15 @@
 package com.example.webbiestest.Activity;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.paging.PagedList;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.webbiestest.Adapter.DataAdapter;
-import com.example.webbiestest.Adapter.RecyclerAdapter;
-import com.example.webbiestest.MyData;
-import com.example.webbiestest.ProductViewModel;
 import com.example.webbiestest.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-
-    private RecyclerView recyclerView;
-    private FloatingActionButton floatingActionButton;
-
-    private ProductViewModel productViewModel;
 
 
     @Override
@@ -36,11 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.v(TAG, "onCreate()");
-
-        setUserInterface();
     }
 
-    public void setUserInterface() {
+   /* public void setUserInterface() {
         Log.v(TAG, "setUserInterface()");
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -68,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(dataAdapter);
 
-        /*productViewModel.getAllData().observe(this, new Observer<List<MyData>>() {
+        *//*productViewModel.getAllData().observe(this, new Observer<List<MyData>>() {
             @Override
             public void onChanged(List<MyData> myData) {
                 Log.v(TAG, "DataSetToRecyclerAdapter");
@@ -76,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
-        });*/
+        });*//*
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,5 +67,5 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
+    }*/
 }

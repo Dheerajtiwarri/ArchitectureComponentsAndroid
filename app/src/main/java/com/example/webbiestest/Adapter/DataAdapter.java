@@ -3,10 +3,8 @@ package com.example.webbiestest.Adapter;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,8 +20,6 @@ import com.example.webbiestest.MyData;
 import com.example.webbiestest.R;
 import com.example.webbiestest.databinding.RecyclerviewItemBinding;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 /*
  *This Adapter will use in place of now recycler adapter
  * this will take the data in paging format.
@@ -31,7 +27,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class DataAdapter extends PagedListAdapter<MyData, DataAdapter.DataViewHolder> {
 
-    public static final String TAG = "DataAdapter";
+    private static final String TAG = "DataAdapter";
 
     private Context context;
 
@@ -64,7 +60,7 @@ public class DataAdapter extends PagedListAdapter<MyData, DataAdapter.DataViewHo
 
     //we have to include diffCallback to determine that two object or two list of object are same or not.
 
-    public static DiffUtil.ItemCallback<MyData> DIFF_CALLBACK =
+    private static DiffUtil.ItemCallback<MyData> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<MyData>() {
                 @Override
                 public boolean areItemsTheSame(@NonNull MyData oldItem, @NonNull MyData newItem) {
@@ -98,7 +94,7 @@ public class DataAdapter extends PagedListAdapter<MyData, DataAdapter.DataViewHo
 
         RecyclerviewItemBinding itemBinding;
 
-        public DataViewHolder(RecyclerviewItemBinding itemBinding) {
+        DataViewHolder(RecyclerviewItemBinding itemBinding) {
             super(itemBinding.getRoot());
             Log.v(TAG,"DataViewHolder()");
             this.itemBinding = itemBinding;

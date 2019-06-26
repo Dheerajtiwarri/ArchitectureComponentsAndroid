@@ -18,10 +18,6 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.List;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 /**
  * Created by Dheeraj on 14-05-2019.
  * dheerajtiwarri@gmail.com
@@ -35,7 +31,6 @@ class ProductRepository {
     //  private LiveData<List<MyData>> allMyData;
     private FirebaseFirestore firebaseFirestore;
     private DocumentSnapshot ds;
-    private Query query;
 
     private int lastIndexId;
 
@@ -77,9 +72,10 @@ class ProductRepository {
 
 
     //fetch data from fireStore.
-    void fetchDataFromFireStore() {
+    private void fetchDataFromFireStore() {
         Log.v(TAG, "fetchDataFromFireStore()");
 
+        Query query;
         if (lastIndexId == 0) {
 
             query = firebaseFirestore.collection("products")
@@ -115,7 +111,7 @@ class ProductRepository {
     }
 
     //send data to fireStore.
-    public void sendDataToFireStore(MyData myData) {
+    private void sendDataToFireStore(MyData myData) {
         Log.v(TAG, "sendDataToFireStore()");
 
         firebaseFirestore.collection("products").add(myData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -154,7 +150,7 @@ class ProductRepository {
     private static class InsertDataInRoomAsyncTask extends AsyncTask<MyData, Void, Void> {
         private MyDao myDao;
 
-        public InsertDataInRoomAsyncTask(MyDao myDao) {
+        InsertDataInRoomAsyncTask(MyDao myDao) {
             this.myDao = myDao;
         }
 
@@ -169,7 +165,7 @@ class ProductRepository {
     }
 
 
-    public class BoundaryCallback<T> extends PagedList.BoundaryCallback<T> {
+    class BoundaryCallback<T> extends PagedList.BoundaryCallback<T> {
 
         @Override
         public void onZeroItemsLoaded() {

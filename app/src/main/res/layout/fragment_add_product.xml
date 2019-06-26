@@ -4,23 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddProductFragment">
+    tools:context=".Fragments.AddProductFragment">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_bright"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".Activity.AddDataActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:text="Hello I am the Product Fragment... :D "
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp">
+
+            <EditText
+
+                android:id="@+id/image_url"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:hint="@string/image_url"
+                android:paddingLeft="10dp"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/check_image_button"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/holo_orange_light"
+                android:text="check" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:clickable="true" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:background="@android:color/white"
+            android:hint="@string/product_name"
+            android:paddingLeft="10dp" />
+
+        <Button
+            android:id="@+id/product_save"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:background="@android:color/holo_orange_light"
+            android:text="save"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.example.webbiestest;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -13,7 +12,7 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "users")
 public class MyData {
-    public static final String TAG="MyData";
+    private static final String TAG="MyData";
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
