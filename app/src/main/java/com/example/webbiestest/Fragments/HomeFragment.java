@@ -54,16 +54,6 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //button=(Button)view.findViewById(R.id.goToAddNewProductBtn);
-
-        // button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.toAddProductFragment));   //First way to achieve navigation component
-
-       /*  button.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Navigation.findNavController(view).navigate(R.id.toAddProductFragment);  //Second way to call the achieve navigation components
-           }
-       });*/
     }
 
 
@@ -73,8 +63,6 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView = viewHomeFragment.findViewById(R.id.recyclerView);
         FloatingActionButton floatingActionButton = viewHomeFragment.findViewById(R.id.floating_button);
 
-        // final RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this);
-        // recyclerView.setAdapter(recyclerAdapter);
 
         //with PagedListAdapter
         final DataAdapter dataAdapter = new DataAdapter(getActivity());
@@ -82,8 +70,6 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         ProductViewModel productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
-
-        // productViewModel.fetchDataFromFireStore();  //trigger view model for fetching the data.
 
 
         productViewModel.getAllData().observe(this, new Observer<PagedList<MyData>>() {
@@ -95,15 +81,6 @@ public class HomeFragment extends Fragment {
 
         recyclerView.setAdapter(dataAdapter);
 
-        /*productViewModel.getAllData().observe(this, new Observer<List<MyData>>() {
-            @Override
-            public void onChanged(List<MyData> myData) {
-                Log.v(TAG, "DataSetToRecyclerAdapter");
-               // recyclerAdapter.setData(myData);
-
-
-            }
-        });*/
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

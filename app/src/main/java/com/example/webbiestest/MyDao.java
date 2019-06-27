@@ -16,8 +16,6 @@ public interface MyDao {
     public void addData(MyData data);
 
     @Query("select * from users ORDER BY name ASC")
-    //public LiveData<List<MyData>> readData();
     DataSource.Factory<Integer, MyData> readData();
-
-
+    
 }
