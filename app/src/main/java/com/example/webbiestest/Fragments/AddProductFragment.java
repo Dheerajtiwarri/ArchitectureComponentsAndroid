@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -36,7 +37,6 @@ public class AddProductFragment extends Fragment {
     private ProductViewModel productViewModel;
     private String url = "";
 
-    private FragmentAddProductBinding fragmentAddProductBinding;
 
     private AddProductFragmentEventHandlers handlers;
 
@@ -47,7 +47,8 @@ public class AddProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        fragmentAddProductBinding =DataBindingUtil.inflate(inflater,R.layout.fragment_add_product,container,false);
+        //viewAddProductFragment=inflater.inflate(R.layout.fragment_add_product, container, false);
+        FragmentAddProductBinding fragmentAddProductBinding =DataBindingUtil.inflate(inflater,R.layout.fragment_add_product,container,false);
 
         viewAddProductFragment=fragmentAddProductBinding.getRoot();
 
@@ -103,6 +104,13 @@ public class AddProductFragment extends Fragment {
                 productViewModel.saveData(myData);
 
                 //getActivity().onBackPressed();
+
+
+               /* NavOptions.Builder navBuilder = new NavOptions.Builder();   //not working, onBackPress it just refresh the homeFragment(passed on the below )
+                NavOptions navOptions = navBuilder.setPopUpTo(R.id.homeFragment, false).build();*/
+
+
+
                 Navigation.findNavController(viewAddProductFragment).navigate(R.id.homeFragment);
             }
         });
