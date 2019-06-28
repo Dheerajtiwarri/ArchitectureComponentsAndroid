@@ -1,12 +1,12 @@
 package com.example.webbiestest.Fragments;
 
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.webbiestest.BindingEvents.AddProductFragmentEventHandlers;
@@ -23,9 +22,6 @@ import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
 import com.example.webbiestest.R;
 import com.example.webbiestest.databinding.FragmentAddProductBinding;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -41,6 +37,7 @@ public class AddProductFragment extends Fragment {
     private String url = "";
 
     private FragmentAddProductBinding fragmentAddProductBinding;
+
     private AddProductFragmentEventHandlers handlers;
 
 
@@ -105,7 +102,8 @@ public class AddProductFragment extends Fragment {
 
                 productViewModel.saveData(myData);
 
-                getActivity().onBackPressed();
+                //getActivity().onBackPressed();
+                Navigation.findNavController(viewAddProductFragment).navigate(R.id.homeFragment);
             }
         });
     }
