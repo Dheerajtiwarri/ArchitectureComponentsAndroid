@@ -6,9 +6,20 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="androidx.fragment.app.Fragment" />
+
         <variable
             name="clickEvents"
-            type="com.example.webbiestest.BindingEvents.AddProductFragmentEventHandlers" />
+          type="com.example.webbiestest.MyHandlers" />
+
+        <variable
+            name="myData"
+            type="com.example.webbiestest.MyData" />
+        <variable
+            name="url"
+            type="String" />
     </data>
 
 
@@ -41,6 +52,7 @@
                 android:id="@+id/check_image_button"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
+                android:onClick="@{() -> clickEvents.onCheckClick(myData.image)}"
                 android:layout_marginLeft="5dp"
                 android:background="@android:color/holo_orange_light"
                 android:text="check" />
@@ -56,7 +68,9 @@
                 android:id="@+id/product_image"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:clickable="true" />
+                android:clickable="true"
+
+                app:imageUrl="@{url}"/>
 
         </LinearLayout>
 
@@ -67,6 +81,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="40dp"
             android:background="@android:color/white"
+            android:text="@={myData.name}"
             android:hint="@string/product_name"
             android:paddingLeft="10dp" />
 
@@ -76,7 +91,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="50dp"
             android:background="@android:color/holo_orange_light"
-            android:onClick="@{clickEvents::onSaveDataClick}"
+            android:onClick="@{() -> clickEvents.onSaveButtonClick(myData)}"
             android:text="save"
             android:textColor="@android:color/white" />
 

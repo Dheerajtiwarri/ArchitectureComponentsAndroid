@@ -28,9 +28,10 @@ limitations under the License. -->
 
         <ImageView
             android:id="@+id/product_display_image"
-            android:layout_width="200dp"
+            android:layout_width="378dp"
             android:layout_height="200dp"
-            app:imageUrl="@{products.image}"/>
+            android:scaleType="fitXY"
+            app:imageUrl="@{products.image}" />
 
 
         <TextView

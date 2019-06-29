@@ -3,10 +3,11 @@ package com.example.webbiestest.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -18,7 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.webbiestest.BindingEvents.AddProductFragmentEventHandlers;
+import com.example.webbiestest.MyHandlers;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
 import com.example.webbiestest.R;
@@ -34,37 +35,42 @@ public class AddProductFragment extends Fragment {
 
     private ImageView productImage;
     private EditText productName, imageUrl;
-    private ProductViewModel productViewModel;
+    public ProductViewModel productViewModel;
     private String url = "";
-
-
-    private AddProductFragmentEventHandlers handlers;
-
-
     private View viewAddProductFragment;
+
+    private FragmentAddProductBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         //viewAddProductFragment=inflater.inflate(R.layout.fragment_add_product, container, false);
-        FragmentAddProductBinding fragmentAddProductBinding =DataBindingUtil.inflate(inflater,R.layout.fragment_add_product,container,false);
+        binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_add_product, container, false);
+        viewAddProductFragment = binding.getRoot();
 
-        viewAddProductFragment=fragmentAddProductBinding.getRoot();
+        MyData myData = new MyData();
+        MyHandlers handlers = new MyHandlers(getContext());
+        binding.setMyData(myData);
+        binding.setClickEvents(handlers);
 
-        handlers=new AddProductFragmentEventHandlers(getActivity());
-
-        fragmentAddProductBinding.setClickEvents(handlers);
 
 
-       // setUserInterface();
+
+        // setUserInterface();
 
         return viewAddProductFragment;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        // handlers=new MyHandlers(getContext());
+        //  binding.setClickEvents(handlers);
+    }
 
-    private void setUserInterface() {
+   /* private void setUserInterface() {
 
         Log.v(TAG, "setUserInterface()");
 
@@ -106,17 +112,14 @@ public class AddProductFragment extends Fragment {
                 //getActivity().onBackPressed();
 
 
-               /* NavOptions.Builder navBuilder = new NavOptions.Builder();   //not working, onBackPress it just refresh the homeFragment(passed on the below )
-                NavOptions navOptions = navBuilder.setPopUpTo(R.id.homeFragment, false).build();*/
-
+               *//* NavOptions.Builder navBuilder = new NavOptions.Builder();   //not working, onBackPress it just refresh the homeFragment(passed on the below )
+                NavOptions navOptions = navBuilder.setPopUpTo(R.id.homeFragment, false).build();*//*
 
 
                 Navigation.findNavController(viewAddProductFragment).navigate(R.id.homeFragment);
             }
         });
-    }
-
-
+    }*/
 
 
 }
