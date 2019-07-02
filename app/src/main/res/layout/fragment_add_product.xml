@@ -45,6 +45,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/white"
                 android:hint="@string/image_url"
+                android:text="@={myData.image}"
                 android:paddingLeft="10dp"
                 android:singleLine="true" />
 
@@ -70,7 +71,7 @@
                 android:layout_height="300dp"
                 android:clickable="true"
 
-                app:imageUrl="@{url}"/>
+                app:imageUrl="@{myData.image}"/>
 
         </LinearLayout>
 

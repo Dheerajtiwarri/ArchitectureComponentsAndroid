@@ -49,8 +49,10 @@ public class AddProductFragment extends Fragment {
         binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_add_product, container, false);
         viewAddProductFragment = binding.getRoot();
 
+        productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
+
         MyData myData = new MyData();
-        MyHandlers handlers = new MyHandlers(getContext());
+        MyHandlers handlers = new MyHandlers(getContext(),productViewModel);
         binding.setMyData(myData);
         binding.setClickEvents(handlers);
 
