@@ -84,7 +84,8 @@ public class AddProductFragment extends Fragment {
     public void setImage(ImageView imageView,String url)
     {
 
-        sgd=new ScaleGestureDetector(this,new ScaleListener());
+        sgd=new ScaleGestureDetector(getContext(),new ScaleListener(imageView));
+        Log.v(TAG,url);
 
     }
 
@@ -92,6 +93,11 @@ public class AddProductFragment extends Fragment {
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 
+       private ImageView imageView;
+
+        public ScaleListener(ImageView imageView) {
+            this.imageView = imageView;
+        }
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
