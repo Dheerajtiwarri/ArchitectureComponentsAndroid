@@ -1,10 +1,14 @@
 package com.example.webbiestest.Fragments;
 
 
+import android.content.Context;
+import android.media.Image;
+import android.graphics.Matrix;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -12,6 +16,8 @@ import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,8 +44,10 @@ public class AddProductFragment extends Fragment {
     public ProductViewModel productViewModel;
     private String url = "";
     private View viewAddProductFragment;
+    private ScaleGestureDetector sgd;
 
     private FragmentAddProductBinding binding;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +56,7 @@ public class AddProductFragment extends Fragment {
         //viewAddProductFragment=inflater.inflate(R.layout.fragment_add_product, container, false);
         binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_add_product, container, false);
         viewAddProductFragment = binding.getRoot();
+        context.getApplicationContext();
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
@@ -56,12 +65,43 @@ public class AddProductFragment extends Fragment {
         binding.setMyData(myData);
         binding.setClickEvents(handlers);
 
-
+        viewAddProductFragment.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                sgd.onTouchEvent(event);
+                return true;
+            }
+        });
 
 
         // setUserInterface();
 
         return viewAddProductFragment;
+    }
+
+
+    @BindingAdapter("zoomPicTest")
+    public void setImage(ImageView imageView,String url)
+    {
+
+        sgd=new ScaleGestureDetector(this,new ScaleListener());
+
+    }
+
+
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+
+
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            Float  scale = detector.getScaleFactor();
+            scale = Math.max(0.1f, Math.min(scale, 0.5f));
+            Matrix matrix=new Matrix();
+            matrix.postScale(scale, scale);
+            imageView.setImageMatrix(matrix);
+            return true;
+        }
     }
 
     @Override

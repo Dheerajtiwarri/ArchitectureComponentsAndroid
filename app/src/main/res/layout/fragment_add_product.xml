@@ -71,7 +71,7 @@
                 android:layout_height="300dp"
                 android:clickable="true"
 
-                app:imageUrl="@{myData.image}"/>
+                app:zoomPicTest="@{myData.image}"/>
 
         </LinearLayout>
 
