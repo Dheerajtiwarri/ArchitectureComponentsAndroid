@@ -65,11 +65,12 @@
             android:layout_height="wrap_content"
             android:padding="5dp">
 
-            <ImageView
+            <com.example.webbiestest.ZoomableImageView
                 android:id="@+id/product_image"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:clickable="true"
+                android:background="@drawable/download"
 
                 app:zoomPicTest="@{myData.image}"/>
 

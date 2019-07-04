@@ -2,8 +2,6 @@ package com.example.webbiestest.Fragments;
 
 
 import android.content.Context;
-import android.media.Image;
-import android.graphics.Matrix;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,19 +10,17 @@ import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.webbiestest.ZoomableImageView;
 import com.example.webbiestest.MyHandlers;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
@@ -56,7 +52,6 @@ public class AddProductFragment extends Fragment {
         //viewAddProductFragment=inflater.inflate(R.layout.fragment_add_product, container, false);
         binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_add_product, container, false);
         viewAddProductFragment = binding.getRoot();
-        context.getApplicationContext();
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
@@ -64,14 +59,6 @@ public class AddProductFragment extends Fragment {
         MyHandlers handlers = new MyHandlers(getContext(),productViewModel);
         binding.setMyData(myData);
         binding.setClickEvents(handlers);
-
-        viewAddProductFragment.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                sgd.onTouchEvent(event);
-                return true;
-            }
-        });
 
 
         // setUserInterface();
@@ -81,34 +68,38 @@ public class AddProductFragment extends Fragment {
 
 
     @BindingAdapter("zoomPicTest")
-    public void setImage(ImageView imageView,String url)
-    {
+    public static void setImage(ZoomableImageView zoomableImageView, String imageUrl) {
 
-        sgd=new ScaleGestureDetector(getContext(),new ScaleListener(imageView));
-        Log.v(TAG,url);
+       /* if(imageUrl != null)
+        {
+            URL url = null;
+            Bitmap image = null;
+            try {
+                url = new URL(imageUrl);
+                image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+          //  zoomableImageView.setImageBitmap(image);
+            //Log.v("Test",image.toString());
+        }*/
+
+       Context context=zoomableImageView.getContext();
+
+        RequestOptions options = new RequestOptions()
+                .placeholder(R.drawable.ic_add_black_24dp);
+
+        Glide.with(context)
+                .setDefaultRequestOptions(options) //set byDefault Image in case didn't get data form server.
+                .load(imageUrl)
+                .into(zoomableImageView);
+
 
     }
 
-
-
-    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-
-       private ImageView imageView;
-
-        public ScaleListener(ImageView imageView) {
-            this.imageView = imageView;
-        }
-
-        @Override
-        public boolean onScale(ScaleGestureDetector detector) {
-            Float  scale = detector.getScaleFactor();
-            scale = Math.max(0.1f, Math.min(scale, 0.5f));
-            Matrix matrix=new Matrix();
-            matrix.postScale(scale, scale);
-            imageView.setImageMatrix(matrix);
-            return true;
-        }
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
