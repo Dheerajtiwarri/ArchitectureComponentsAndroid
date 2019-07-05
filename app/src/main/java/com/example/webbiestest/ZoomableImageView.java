@@ -12,7 +12,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
-public class ZoomableImageView extends ImageView
+public class  ZoomableImageView extends ImageView
 {
     Matrix matrix = new Matrix();
 

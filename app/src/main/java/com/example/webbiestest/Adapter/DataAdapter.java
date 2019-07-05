@@ -81,11 +81,11 @@ public class DataAdapter extends PagedListAdapter<MyData, DataAdapter.DataViewHo
 
         Context context = imageView.getContext();
 
-        RequestOptions options = new RequestOptions()
-                .placeholder(R.drawable.ic_add_black_24dp);
+       /* RequestOptions options = new RequestOptions()
+                .placeholder(R.drawable.ic_add_black_24dp);*/
 
         Glide.with(context)
-                .setDefaultRequestOptions(options) //set byDefault Image in case didn't get data form server.
+               // .setDefaultRequestOptions(options) //set byDefault Image in case didn't get data form server.
                 .load(imageUrl)
                 .into(imageView);
     }

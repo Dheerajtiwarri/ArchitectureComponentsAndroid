@@ -20,7 +20,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.webbiestest.ZoomableImageView;
+import com.example.webbiestest.CustomImageView;
 import com.example.webbiestest.MyHandlers;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
@@ -68,7 +68,7 @@ public class AddProductFragment extends Fragment {
 
 
     @BindingAdapter("zoomPicTest")
-    public static void setImage(ZoomableImageView zoomableImageView, String imageUrl) {
+    public static void setImage(CustomImageView customImageView, String imageUrl) {
 
        /* if(imageUrl != null)
         {
@@ -87,7 +87,7 @@ public class AddProductFragment extends Fragment {
             //Log.v("Test",image.toString());
         }*/
 
-       Context context=zoomableImageView.getContext();
+       Context context=customImageView.getContext();
 
         RequestOptions options = new RequestOptions()
                 .placeholder(R.drawable.ic_add_black_24dp);
@@ -95,7 +95,7 @@ public class AddProductFragment extends Fragment {
         Glide.with(context)
                 .setDefaultRequestOptions(options) //set byDefault Image in case didn't get data form server.
                 .load(imageUrl)
-                .into(zoomableImageView);
+                .into(customImageView);
 
 
     }
