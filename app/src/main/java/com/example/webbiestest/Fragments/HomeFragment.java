@@ -90,7 +90,9 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(MainActivity.this, AddDataActivity.class);
                 startActivity(intent);
                 finish();*/
-              Navigation.findNavController(viewHomeFragment).navigate(R.id.addProductFragment);
+            //  Navigation.findNavController(viewHomeFragment).navigate(R.id.addProductFragment);
+
+                Navigation.findNavController(viewHomeFragment).navigate(R.id.dialogTestFragment);
             }
         });
     }
