@@ -1,6 +1,7 @@
 package com.example.webbiestest.Fragments;
 
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
@@ -19,6 +20,23 @@ public class DialogTestFragment extends DialogFragment {
 
   private static final String TAG = "DialogTestFragment";
   private View dialogTestFragmentView;
+
+
+  /*
+   * For displaying Dialog on full Screen
+   * Dheeraj
+   * */
+  @Override
+  public void onStart() {
+    super.onStart();
+    Dialog dialog = getDialog();
+    if (dialog != null) {
+      int width = ViewGroup.LayoutParams.MATCH_PARENT;
+      int height = ViewGroup.LayoutParams.MATCH_PARENT;
+      dialog.getWindow().setLayout(width, height);
+     // dialog.getWindow().setWindowAnimations(R.style.dialog_slide);
+    }
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
