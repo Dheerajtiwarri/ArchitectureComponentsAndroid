@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_add_product" />
     <dialog
         android:id="@+id/dialogTestFragment"
-        android:name="com.example.webbiestest.Fragments.DialogTestFragment"
+        android:name="com.example.webbiestest.DialogTestFragment"
         android:label="fragment_dialog_test"
         tools:layout="@layout/fragment_dialog_test" />
 </navigation>
