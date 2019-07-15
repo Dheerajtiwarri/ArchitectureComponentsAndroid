@@ -2,14 +2,17 @@ package com.example.webbiestest;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import android.widget.Toast;
 import com.example.webbiestest.R;
 import com.example.webbiestest.databinding.FragmentDialogTestBinding;
 import com.example.webbiestest.databinding.LayoutCheckTestBinding;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +76,10 @@ public class DialogTestFragment extends DialogFragment {
           // dialogTestFragmentView = inflater.inflate(R.layout.fragment_dialog_test, container, false);
           dialogTestFragmentView = binding.getRoot();
           binding.getCheckStatus();
+          ClickHandlers clickHandlers=new ClickHandlers(getContext());
+
+          binding.setClickEvents(clickHandlers);
+          binding.setMyData(new MyData());
 
           linearLayout = (LinearLayout) dialogTestFragmentView.findViewById(R.id.linearLayout);
 
@@ -108,34 +116,66 @@ public class DialogTestFragment extends DialogFragment {
           }
      }
 
-     @BindingAdapter("switchClick")
-     public void onApplyClick()
+
+
+
+     public class ClickHandlers
      {
-          Bundle bundle=new Bundle();
-          bundle.putStringArrayList("checked Data",checkecList);
-          Navigation.findNavController(dialogTestFragmentView).navigate(R.id.homeFragment,bundle);
+          public Context context;
+
+          public ClickHandlers(Context context) {
+               this.context = context;
+          }
+
+          public void onApplyClick(View view,MyData myData)
+          {
+               // Bundle bundle=new Bundle();
+               // Gson gson=new Gson();
+               //  Navigation.findNavController(dialogTestFragmentView).navigate(R.id.homeFragment,bundle);
 
 
-     }
+               Toast.makeText(context, "this is toast", Toast.LENGTH_SHORT).show();
 
-     //TOdo data binding on toggle button is not working
-     @BindingAdapter("switchClick")
-     public void onSwitchChanged(Switch clickSwitch )
-     {
-         clickSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+          }
+
+          //TOdo data binding on toggle button is not working
+          //@BindingAdapter("switchClick")
+          public void onSwitchChanged(View view,MyData myData )
+          {
+        /* clickSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
               @Override
               public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                    if(isChecked)
                    {
-                      checkecList.add( textView.getText().toString());
+                  //    checkecList.add( textView.getText().toString());
+
                    }
                    else
                    {
-                        checkecList.remove(textView.getText().toString());
+                    //    checkecList.remove(textView.getText().toString());
                    }
               }
-         });
+         });*/
 
+        /*view.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+             @Override
+             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                  if(isChecked)
+                  {
+                       Toast.makeText(getContext(), "this is the switch Test", Toast.LENGTH_SHORT).show();
+                  }
+                  else
+                  {
+                       Toast.makeText(getContext(), "this is the else part... Thank you... :) ", Toast.LENGTH_SHORT).show();
+                  }
+             }
+        });*/
+               Log.i(TAG, "onSwitchChanged: Data nai aaya... :( ");
+
+
+               Toast.makeText(context, "this is the else part... Thank you... :) ", Toast.LENGTH_SHORT).show();
+          }
      }
 
 }

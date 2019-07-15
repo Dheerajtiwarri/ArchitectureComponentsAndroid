@@ -11,8 +11,12 @@
             name="checkStatus"
             type="String" />
         <variable
+            name="myData"
+            type="com.example.webbiestest.MyData" />
+
+        <variable
             name="clickEvents"
-            type="com.example.webbiestest.DialogTestFragment" />
+            type="com.example.webbiestest.DialogTestFragment.ClickHandlers" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,8 +52,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            android:onClick="@{(v) -> clickEvents.onApplyClick(v,myData)}"
             android:text="@string/apply"
-            android:onClick="@{() -> clickEvents.switchClick}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.886"
