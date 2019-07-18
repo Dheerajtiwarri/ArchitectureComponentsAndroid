@@ -21,6 +21,22 @@ public class MyData extends BaseObservable {
     public int id;
     public String name;
     public String image;
+    public boolean isCheck;
+
+    public MyData(String name, boolean isCheck) {
+        this.name = name;
+        this.isCheck = isCheck;
+    }
+
+    @Bindable
+    public boolean isCheck() {
+        return isCheck;
+    }
+
+    public void setCheck(boolean check) {
+        isCheck = check;
+       //notifyPropertyChanged(BR.);
+    }
 
     public MyData() {
         //this class is needed...

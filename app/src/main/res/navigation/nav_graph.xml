@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/toAddProductFragment"
-            app:destination="@+id/addProductFragment" />
+            app:destination="@id/addProductFragment"
+            app:launchSingleTop="true" />
         <action
             android:id="@+id/action_homeFragment_to_dialogTestFragment"
             app:destination="@id/dialogTestFragment" />
@@ -26,5 +27,13 @@
         android:id="@+id/dialogTestFragment"
         android:name="com.example.webbiestest.DialogTestFragment"
         android:label="fragment_dialog_test"
-        tools:layout="@layout/fragment_dialog_test" />
+        tools:layout="@layout/fragment_dialog_test" >
+        <action
+            android:id="@+id/action_dialogTestFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="checked data"
+            app:argType="string[]"
+            app:nullable="true" />
+    </dialog>
 </navigation>

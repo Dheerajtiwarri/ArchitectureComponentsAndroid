@@ -16,7 +16,7 @@
 
         <variable
             name="clickEvents"
-            type="com.example.webbiestest.DialogTestFragment.ClickHandlers" />
+            type="com.example.webbiestest.DialogTestFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,22 +25,23 @@
         tools:context=".DialogTestFragment">
 
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="405dp"
-            android:layout_height="585dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dialog_recyclerView"
+            android:layout_width="394dp"
+            android:layout_height="582dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.061" />
+            app:layout_constraintVertical_bias="0.75">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:id="@+id/button"
@@ -52,13 +53,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:onClick="@{(v) -> clickEvents.onApplyClick(v,myData)}"
             android:text="@string/apply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.886"
+            app:layout_constraintHorizontal_bias="0.879"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.916" />
+            app:layout_constraintVertical_bias="0.947" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
