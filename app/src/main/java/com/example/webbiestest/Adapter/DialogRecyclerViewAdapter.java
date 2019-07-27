@@ -30,7 +30,8 @@ public class DialogRecyclerViewAdapter extends RecyclerView.Adapter<DialogRecycl
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutCheckTestBinding layoutCheckTestBinding=DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.layout_check_test,parent,false);
+        LayoutCheckTestBinding layoutCheckTestBinding=DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                  R.layout.layout_check_test,parent,false);
 
         CustomViewHolder customViewHolder=new CustomViewHolder(layoutCheckTestBinding);
 

@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_homeFragment_to_dialogTestFragment"
             app:destination="@id/dialogTestFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_testChipFragment"
+            app:destination="@id/testChipFragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
@@ -36,4 +39,9 @@
             app:argType="string[]"
             app:nullable="true" />
     </dialog>
+    <fragment
+        android:id="@+id/testChipFragment"
+        android:name="com.example.webbiestest.Fragments.TestChipFragment"
+        android:label="fragment_test_chip"
+        tools:layout="@layout/fragment_test_chip" />
 </navigation>

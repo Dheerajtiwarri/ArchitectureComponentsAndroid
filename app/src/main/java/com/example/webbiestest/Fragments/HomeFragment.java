@@ -20,10 +20,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.webbiestest.Adapter.DataAdapter;
+import com.example.webbiestest.TestChipModel;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
 import com.example.webbiestest.R;
+import com.example.webbiestest.ChipTestDataViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 
 /**
@@ -33,9 +37,7 @@ public class HomeFragment extends Fragment {
 
 
     private static final String TAG="HomeFragment";
-
     public Button button;
-
     private View viewHomeFragment;
 
 
@@ -44,6 +46,15 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         viewHomeFragment = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ChipTestDataViewModel viewModel=ViewModelProviders.of(this).get(ChipTestDataViewModel.class);
+
+        ArrayList<TestChipModel> list=new ArrayList<>();
+        for(int i=0;i<=5;i++)
+        {
+            list.add(new TestChipModel(i,"Dheeraj","Psycho is the gaming id of dheeraj"));
+        }
+        viewModel.setUpdatedData(list);
 
         setUserInterface();
 
@@ -92,7 +103,9 @@ public class HomeFragment extends Fragment {
                 finish();*/
             //  Navigation.findNavController(viewHomeFragment).navigate(R.id.addProductFragment);
 
-                Navigation.findNavController(viewHomeFragment).navigate(R.id.dialogTestFragment);
+              //  Navigation.findNavController(viewHomeFragment).navigate(R.id.dialogTestFragment);
+
+                Navigation.findNavController(viewHomeFragment).navigate(R.id.testChipFragment);
             }
         });
     }
