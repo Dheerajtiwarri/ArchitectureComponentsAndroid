@@ -14,7 +14,14 @@
         android:roundIcon="@drawable/surprised"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.TestActivity"/>
+        <activity android:name=".Activity.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ExtraExperiment.ImageZoomTest.ImageZoom"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -24,11 +31,7 @@
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
+
         </activity>
     </application>
 

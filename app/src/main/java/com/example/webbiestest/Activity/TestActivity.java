@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.webbiestest.R;
 
@@ -18,8 +19,8 @@ public class TestActivity extends AppCompatActivity {
 
     private static final String TAG = "TestActivity";
     private HashMap<String, ArrayList<String>> mHashMap = new HashMap<>();
-
     private List<List<String>> queryList = new ArrayList<>();
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class TestActivity extends AppCompatActivity {
         addingInitialValueOnHashMap();
         printData();
 
-        //  textView = findViewById(R.id.test_textView);
+        textView = findViewById(R.id.test_textView);
 
         QueryTest queryTest = new QueryTest();
         queryTest.test();
@@ -168,13 +169,17 @@ public class TestActivity extends AppCompatActivity {
         }
 
         public void test() {
+            StringBuilder stringBuilder=new StringBuilder();
             Set<Set<String>> result = multiply(queryList);
             for (Set<String> stringSet : result) {
                 for (String string : stringSet) {
                     Log.i(TAG, "test: " + string);
+                    stringBuilder.append(string + " ");
                 }
+                stringBuilder.append("\n \n ");
                 Log.i(TAG, "test: " + "\n\n");
             }
+            textView.setText(stringBuilder);
         }
     }
 
