@@ -43,7 +43,7 @@ dependencies {
     //firebase
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-firestore:19.0.1'
-   // implementation 'com.google.firebase:firebase-database:16.0.4'
+    // implementation 'com.google.firebase:firebase-database:16.0.4'
 
     //Paging library
     implementation "androidx.paging:paging-runtime:2.1.0"
