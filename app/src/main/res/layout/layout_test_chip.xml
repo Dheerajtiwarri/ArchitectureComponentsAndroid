@@ -10,22 +10,17 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical" android:layout_width="match_parent"
+        android:id="@+id/linear_layout"
         android:layout_height="match_parent"
         android:background="#ffffff"
         android:gravity="center_horizontal">
 
-        <com.google.android.material.chip.Chip
-            style="@style/Widget.MaterialComponents.Chip.Entry"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/chips"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:hint="@string/apply"
-            android:text="@{chipData.dataValue}"
-            app:chipEndPadding="3sp"
-            android:textSize="18sp"
-            app:chipIcon="@drawable/ic_favorite_black_24dp"
-            app:chipStartPadding="3sp"
-            app:closeIcon="@drawable/ic_highlight_off_black_24dp" />
+            android:hint="chip text"
+            android:text="@{chipData.dataValue}"/>
 
     </LinearLayout>
 </layout>

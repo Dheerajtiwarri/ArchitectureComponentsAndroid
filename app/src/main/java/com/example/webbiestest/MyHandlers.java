@@ -1,18 +1,12 @@
 package com.example.webbiestest;
 
-import android.app.Application;
 import android.content.Context;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.databinding.BindingAdapter;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
-import com.example.webbiestest.Fragments.AddProductFragment;
 
 /**
  * Created by Dheeraj on 29-06-2019.

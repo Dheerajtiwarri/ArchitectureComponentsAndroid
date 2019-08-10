@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.R;
 import com.example.webbiestest.databinding.RecyclerviewItemBinding;

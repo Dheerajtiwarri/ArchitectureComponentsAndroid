@@ -2,17 +2,13 @@ package com.example.webbiestest;
 
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -20,20 +16,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.webbiestest.Adapter.DialogRecyclerViewAdapter;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.ProductViewModel;
 import com.example.webbiestest.R;
 import com.example.webbiestest.databinding.FragmentDialogTestBinding;
-import com.example.webbiestest.databinding.LayoutCheckTestBinding;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;

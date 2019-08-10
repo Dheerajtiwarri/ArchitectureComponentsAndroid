@@ -34,7 +34,13 @@ public class TestChipRecyclerViewAdapter extends RecyclerView.Adapter<TestChipRe
      @Override
      public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-          LayoutTestChipBinding layoutTestChipBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.layout_check_test,
+<<<<<<< HEAD
+          LayoutTestChipBinding layoutTestChipBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                    R.layout.layout_test_chip,
+=======
+          LayoutTestChipBinding layoutTestChipBinding = DataBindingUtil.inflate(LayoutInflater.from(
+                  parent.getContext()), R.layout.layout_test_chip,
+>>>>>>> 18590d7f60968516c398c89eb7e904823f17183c
                     parent, false);
 
           CustomViewHolder customViewHolder = new CustomViewHolder(layoutTestChipBinding);

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout>
+
     <data>
 
+        <variable
+            name="testChip"
+            type="com.example.webbiestest.TestChipModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,6 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.google.android.material.chip.ChipGroup>
 
         </androidx.recyclerview.widget.RecyclerView>
 

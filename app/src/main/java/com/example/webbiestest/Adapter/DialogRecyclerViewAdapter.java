@@ -2,14 +2,12 @@ package com.example.webbiestest.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.request.transition.Transition;
 import com.example.webbiestest.MyData;
 import com.example.webbiestest.R;
 import com.example.webbiestest.databinding.LayoutCheckTestBinding;
