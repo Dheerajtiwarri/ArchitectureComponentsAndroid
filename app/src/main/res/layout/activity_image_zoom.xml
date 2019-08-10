@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".ImageZoomTest.ImageZoom">
+    tools:context=".ExtraExperiment.ImageZoomTest.ImageZoom">
 
     <!--<ImageView
         android:id="@+id/abc"
@@ -21,7 +21,7 @@
         android:layout_height="match_parent"/>-->
 
     <!--Working without dependency -->
-    <com.example.webbiestest.ZoomableImageView
+    <com.example.webbiestest.ExtraExperiment.ZoomableImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

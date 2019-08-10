@@ -7,6 +7,8 @@ import android.widget.Toast;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.webbiestest.MyData;
+import com.example.webbiestest.ViewModel.ProductViewModel;
 
 /**
  * Created by Dheeraj on 29-06-2019.

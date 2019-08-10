@@ -13,35 +13,13 @@
         <action
             android:id="@+id/toAddProductFragment"
             app:destination="@id/addProductFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
             app:launchSingleTop="true" />
-        <action
-            android:id="@+id/action_homeFragment_to_dialogTestFragment"
-            app:destination="@id/dialogTestFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_testChipFragment"
-            app:destination="@id/testChipFragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
         android:name="com.example.webbiestest.Fragments.AddProductFragment"
         android:label="fragment_add_product"
         tools:layout="@layout/fragment_add_product" />
-    <dialog
-        android:id="@+id/dialogTestFragment"
-        android:name="com.example.webbiestest.DialogTestFragment"
-        android:label="fragment_dialog_test"
-        tools:layout="@layout/fragment_dialog_test" >
-        <action
-            android:id="@+id/action_dialogTestFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <argument
-            android:name="checked data"
-            app:argType="string[]"
-            app:nullable="true" />
-    </dialog>
-    <fragment
-        android:id="@+id/testChipFragment"
-        android:name="com.example.webbiestest.Fragments.TestChipFragment"
-        android:label="fragment_test_chip"
-        tools:layout="@layout/fragment_test_chip" />
 </navigation>

@@ -26,78 +26,77 @@ import com.example.webbiestest.databinding.RecyclerviewItemBinding;
 
 public class DataAdapter extends PagedListAdapter<MyData, DataAdapter.DataViewHolder> {
 
-    private static final String TAG = "DataAdapter";
+   private static final String TAG = "DataAdapter";
+   private static DiffUtil.ItemCallback<MyData> DIFF_CALLBACK =
+         new DiffUtil.ItemCallback<MyData>() {
+            @Override
+            public boolean areItemsTheSame(@NonNull MyData oldItem, @NonNull MyData newItem) {
+               Log.v(TAG, "areItemsTheSame()");
+               return oldItem.id == newItem.id;
+            }
 
-    private Context context;
+            @Override
+            public boolean areContentsTheSame(@NonNull MyData oldItem, @NonNull MyData newItem) {
+               Log.v(TAG, "areContentsTheSame()");
+               return oldItem.equals(newItem);
+            }
+         };
+   private Context context;
 
-    public DataAdapter(Context context) {
-        super(DIFF_CALLBACK);
-        Log.v(TAG, "DataAdapter()");
-        this.context = context;
-    }
+   public DataAdapter(Context context) {
+      super(DIFF_CALLBACK);
+      Log.v(TAG, "DataAdapter()");
+      this.context = context;
+   }
 
-    @NonNull
-    @Override
-    public DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.v(TAG, "onCreateViewHolder");
-        RecyclerviewItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.recyclerview_item, parent, false);
-        return new DataViewHolder(binding);
-    }
+   @BindingAdapter("imageUrl")
+   public static void setImageUrl(ImageView imageView, String imageUrl) {
+      Log.v(TAG, "setImageUrl()");
 
-    @Override
-    public void onBindViewHolder(@NonNull DataViewHolder holder, int position) {
-        Log.v(TAG, "onBindViewHolder()");
-        MyData myData = getItem(position);
-        if (myData != null) {
-            Log.v(TAG, "itemBinding start");
-            holder.itemBinding.setProducts(myData);
-        } else {
-            Log.v(TAG, "Data is null here");
-            Toast.makeText(context, "Data kaha reh gaya.... :'( ", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    //we have to include diffCallback to determine that two object or two list of object are same or not.
-
-    private static DiffUtil.ItemCallback<MyData> DIFF_CALLBACK =
-            new DiffUtil.ItemCallback<MyData>() {
-                @Override
-                public boolean areItemsTheSame(@NonNull MyData oldItem, @NonNull MyData newItem) {
-                    Log.v(TAG, "areItemsTheSame()");
-                    return oldItem.id == newItem.id;
-                }
-
-                @Override
-                public boolean areContentsTheSame(@NonNull MyData oldItem, @NonNull MyData newItem) {
-                    Log.v(TAG, "areContentsTheSame()");
-                    return oldItem.equals(newItem);
-                }
-            };
-
-    @BindingAdapter("imageUrl")
-    public static void setImageUrl(ImageView imageView, String imageUrl) {
-        Log.v(TAG, "setImageUrl()");
-
-        Context context = imageView.getContext();
+      Context context = imageView.getContext();
 
        /* RequestOptions options = new RequestOptions()
                 .placeholder(R.drawable.ic_add_black_24dp);*/
 
-        Glide.with(context)
-               // .setDefaultRequestOptions(options) //set byDefault Image in case didn't get data form server.
-                .load(imageUrl)
-                .into(imageView);
-    }
+      Glide.with(context)
+            // .setDefaultRequestOptions(options) //set byDefault Image in case didn't get data form server.
+            .load(imageUrl)
+            .into(imageView);
+   }
 
-    public class DataViewHolder extends RecyclerView.ViewHolder {
+   //we have to include diffCallback to determine that two object or two list of object are same or not.
 
-        RecyclerviewItemBinding itemBinding;
+   @NonNull
+   @Override
+   public DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+      Log.v(TAG, "onCreateViewHolder");
+      RecyclerviewItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+            R.layout.recyclerview_item, parent, false);
+      return new DataViewHolder(binding);
+   }
 
-        DataViewHolder(RecyclerviewItemBinding itemBinding) {
-            super(itemBinding.getRoot());
-            Log.v(TAG,"DataViewHolder()");
-            this.itemBinding = itemBinding;
-        }
+   @Override
+   public void onBindViewHolder(@NonNull DataViewHolder holder, int position) {
+      Log.v(TAG, "onBindViewHolder()");
+      MyData myData = getItem(position);
+      if (myData != null) {
+         Log.v(TAG, "itemBinding start");
+         holder.itemBinding.setProducts(myData);
+      } else {
+         Log.v(TAG, "Data is null here");
+         Toast.makeText(context, "Data kaha reh gaya.... :'( ", Toast.LENGTH_LONG).show();
+      }
+   }
 
-    }
+   public class DataViewHolder extends RecyclerView.ViewHolder {
+
+      public RecyclerviewItemBinding itemBinding;
+
+      DataViewHolder(RecyclerviewItemBinding itemBinding) {
+         super(itemBinding.getRoot());
+         Log.v(TAG, "DataViewHolder()");
+         this.itemBinding = itemBinding;
+      }
+
+   }
 }

@@ -23,7 +23,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.webbiestest.CustomImageView;
 import com.example.webbiestest.MyHandlers;
 import com.example.webbiestest.MyData;
-import com.example.webbiestest.ProductViewModel;
+import com.example.webbiestest.ViewModel.ProductViewModel;
 import com.example.webbiestest.R;
 import com.example.webbiestest.databinding.FragmentAddProductBinding;
 

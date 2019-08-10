@@ -1,4 +1,4 @@
-package com.example.webbiestest.ImageZoomTest.SecondType;
+package com.example.webbiestest.ExtraExperiment.ImageZoomTest.SecondType;
 
 import android.content.Context;
 import android.graphics.Bitmap;

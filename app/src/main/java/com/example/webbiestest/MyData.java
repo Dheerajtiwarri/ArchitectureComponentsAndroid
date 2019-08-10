@@ -1,6 +1,5 @@
 package com.example.webbiestest;
 
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
@@ -8,64 +7,58 @@ import androidx.databinding.Bindable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.webbiestest.BR;
+
 /**
  * Created by Dheeraj on 14-05-2019.
  * dheerajtiwarri@gmail.com
  */
 @Entity(tableName = "users")
 public class MyData extends BaseObservable {
-    private static final String TAG="MyData";
+   private static final String TAG = "MyData";
 
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    public int id;
-    public String name;
-    public String image;
-    public boolean isCheck;
+   @PrimaryKey(autoGenerate = true)
+   @NonNull
+   public int id;
+   private String name;
+   private String image;
 
-    public MyData(String name, boolean isCheck) {
-        this.name = name;
-        this.isCheck = isCheck;
-    }
 
-    @Bindable
-    public boolean isCheck() {
-        return isCheck;
-    }
+   public MyData() {
+      //this class is needed...
+   }
 
-    public void setCheck(boolean check) {
-        isCheck = check;
-       //notifyPropertyChanged(BR.);
-    }
+   public MyData(String name, String image) {
+      this.name = name;
+      this.image = image;
+   }
 
-    public MyData() {
-        //this class is needed...
-    }
+   public int getId() {
+      return id;
+   }
 
-    public MyData(String name, String image) {
-        Log.v(TAG,"MyData()");
+   public void setId(int id) {
+      this.id = id;
+   }
 
-        this.name = name;
-        this.image = image;
-    }
+   @Bindable
+   public String getImage() {
+      return image;
+   }
 
-    @Bindable
-    public String getImage() {
-        return image;
-    }
+   public void setImage(String image) {
+      this.image = image;
+      notifyPropertyChanged(BR.image);
+   }
 
-    public void setImage(String image) {
-        this.image = image;
-        notifyPropertyChanged(BR.image);
-    }
+   @Bindable
+   public String getName() {
+      return name;
+   }
 
-    @Bindable
-    public String getName() {
-        return name;
-    }
+   public void setName(String name) {
+      this.name = name;
+      notifyPropertyChanged(BR.name);
+   }
 
-    public void setName(String name) {
-        this.name = name;
-        notifyPropertyChanged(BR.name);
-    }
 }

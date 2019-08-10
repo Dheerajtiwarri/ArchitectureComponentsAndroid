@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImageZoomTest.SecondType.SecondTestActivity" >
+    tools:context=".ExtraExperiment.ImageZoomTest.SecondType.SecondTestActivity" >
     <Button
         android:id="@+id/enable_zoom"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:layout_below="@+id/enable_zoom"
         android:src="@drawable/download"/>
 
-    <com.example.webbiestest.ImageZoomTest.SecondType.DrawableView
+    <com.example.webbiestest.ExtraExperiment.ImageZoomTest.SecondType.DrawableView
         android:id="@+id/drawble_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

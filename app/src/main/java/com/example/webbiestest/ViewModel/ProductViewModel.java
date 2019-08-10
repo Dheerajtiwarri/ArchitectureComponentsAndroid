@@ -1,4 +1,4 @@
-package com.example.webbiestest;
+package com.example.webbiestest.ViewModel;
 
 import android.app.Application;
 
@@ -7,13 +7,18 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.paging.PagedList;
 
+import com.example.webbiestest.Dao.MyDao;
+import com.example.webbiestest.MyData;
+import com.example.webbiestest.Repository.ProductRepository;
+
+
 /**
  * Created by Dheeraj on 14-05-2019.
  * dheerajtiwarri@gmail.com
  */
 public class ProductViewModel extends AndroidViewModel {
 
-    private ProductRepository repository;
+    public ProductRepository repository;
     private MyDao myDao;
 
     private final LiveData<PagedList<MyData>> myAllData;
@@ -31,13 +36,12 @@ public class ProductViewModel extends AndroidViewModel {
          ****/
 
         //myAllData = new LivePagedListBuilder<>(myDao.readData(), 10).build();
-
-
     }
 
     public LiveData<PagedList<MyData>> getAllData() {
         return myAllData;
     }
+
 
     public void saveData(MyData myDataList) {
         repository.saveData(myDataList);
