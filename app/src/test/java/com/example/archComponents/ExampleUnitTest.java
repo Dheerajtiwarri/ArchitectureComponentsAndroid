@@ -1,4 +1,4 @@
-package com.example.webbiestest;
+package com.example.archComponents;
 
 import org.junit.Test;
 

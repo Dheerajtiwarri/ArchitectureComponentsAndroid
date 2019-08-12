@@ -1,15 +1,16 @@
-package com.example.webbiestest;
+package com.example.archComponents.ViewModel;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
-import java.util.List;
+import com.example.archComponents.Dao.MyDao;
+import com.example.archComponents.MyData;
+import com.example.archComponents.Repository.ProductRepository;
+
 
 /**
  * Created by Dheeraj on 14-05-2019.
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class ProductViewModel extends AndroidViewModel {
 
-    private ProductRepository repository;
+    public ProductRepository repository;
     private MyDao myDao;
 
     private final LiveData<PagedList<MyData>> myAllData;
@@ -35,20 +36,16 @@ public class ProductViewModel extends AndroidViewModel {
          ****/
 
         //myAllData = new LivePagedListBuilder<>(myDao.readData(), 10).build();
-
-
     }
 
     public LiveData<PagedList<MyData>> getAllData() {
         return myAllData;
     }
 
+
     public void saveData(MyData myDataList) {
         repository.saveData(myDataList);
     }
 
-    /*public void fetchDataFromFireStore() {
-        repository.fetchDataFromFireStore();
-    }*/
 
 }

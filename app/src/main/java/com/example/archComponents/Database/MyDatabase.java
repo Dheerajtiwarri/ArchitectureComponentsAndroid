@@ -1,4 +1,4 @@
-package com.example.webbiestest;
+package com.example.archComponents.Database;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -8,6 +8,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+
+import com.example.archComponents.Dao.MyDao;
+import com.example.archComponents.MyData;
 
 /**
  * Created by Dheeraj on 14-05-2019.
@@ -22,7 +25,7 @@ public abstract class MyDatabase extends RoomDatabase {
     // marking the instance as volatile to ensure atomic access to the variable
     private static volatile MyDatabase INSTANCE;
 
-    static MyDatabase getDatabase(final Context context) {
+  public  static MyDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (MyDatabase.class) {
                 if (INSTANCE == null) {

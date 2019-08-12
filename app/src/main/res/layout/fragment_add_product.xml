@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.fragment.app.Fragment" />
+
+        <variable
+            name="clickEvents"
+          type="com.example.archComponents.MyHandlers" />
+
+        <variable
+            name="myData"
+            type="com.example.archComponents.MyData" />
+        <variable
+            name="url"
+            type="String" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_bright"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".Activity.AddDataActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp">
+
+            <EditText
+
+                android:id="@+id/image_url"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:hint="@string/image_url"
+                android:text="@={myData.image}"
+                android:paddingLeft="10dp"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/check_image_button"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:onClick="@{() -> clickEvents.onCheckClick(myData.image)}"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/holo_orange_light"
+                android:text="check" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <com.example.archComponents.CustomImageView
+                android:id="@+id/product_image"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:clickable="true"
+                app:zoomPicTest="@{myData.image}"/>
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:background="@android:color/white"
+            android:text="@={myData.name}"
+            android:hint="@string/product_name"
+            android:paddingLeft="10dp" />
+
+        <Button
+            android:id="@+id/product_save"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:background="@android:color/holo_orange_light"
+            android:onClick="@{() -> clickEvents.onSaveButtonClick(myData)}"
+            android:text="save"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
+
+</layout>
