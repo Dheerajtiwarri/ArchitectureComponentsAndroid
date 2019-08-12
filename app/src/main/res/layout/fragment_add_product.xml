@@ -12,11 +12,11 @@
 
         <variable
             name="clickEvents"
-          type="com.example.webbiestest.MyHandlers" />
+          type="com.example.archComponents.MyHandlers" />
 
         <variable
             name="myData"
-            type="com.example.webbiestest.MyData" />
+            type="com.example.archComponents.MyData" />
         <variable
             name="url"
             type="String" />
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp">
 
-            <com.example.webbiestest.CustomImageView
+            <com.example.archComponents.CustomImageView
                 android:id="@+id/product_image"
                 android:layout_width="300dp"
                 android:layout_height="300dp"

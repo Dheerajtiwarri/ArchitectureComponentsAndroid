@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.webbiestest">
+    package="com.example.archComponents">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -14,18 +14,18 @@
         android:roundIcon="@drawable/surprised"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.TestActivity">
+        <activity android:name="com.example.archComponents.Activity.TestActivity">
 
         </activity>
 
         <activity
-            android:name=".ExtraExperiment.ImageZoomTest.ImageZoom"
+            android:name="com.example.archComponents.ExtraExperiment.ImageZoomTest.ImageZoom"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ExtraExperiment.ImageZoomTest.SecondType.SecondTestActivity"
+            android:name="com.example.archComponents.ExtraExperiment.ImageZoomTest.SecondType.SecondTestActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name="com.example.archComponents.Activity.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
