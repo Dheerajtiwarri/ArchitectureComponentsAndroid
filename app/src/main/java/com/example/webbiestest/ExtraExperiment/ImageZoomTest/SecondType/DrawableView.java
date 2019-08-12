@@ -21,8 +21,8 @@ public class DrawableView extends View {
     private Paint canvasPaint;
     private Canvas drawCanvas;
     private Bitmap canvasBitmap;
-    private int paintColor = Color.RED;
-    public DrawableView(Context context) {
+
+  public DrawableView(Context context) {
         super(context);
     }
     public DrawableView(Context context, AttributeSet attrs) {
@@ -44,7 +44,8 @@ public class DrawableView extends View {
     private void setupDrawing() {
         drawPath = new Path();
         drawPaint = new Paint();
-        drawPaint.setColor(paintColor);
+      int paintColor = Color.RED;
+      drawPaint.setColor(paintColor);
         drawPaint.setAntiAlias(true);
         drawPaint.setDither(true);
         drawPaint.setStyle(Paint.Style.STROKE);

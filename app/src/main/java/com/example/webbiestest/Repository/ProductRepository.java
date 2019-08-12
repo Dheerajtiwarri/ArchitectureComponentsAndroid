@@ -33,25 +33,26 @@ public class ProductRepository {
 
    private MyDao myDao;
    private FirebaseFirestore fb;
-   private CollectionReference collectionReference;
    private DocumentSnapshot ds;
 
+   private Query query;
+
    private int lastIndexId;
-   private int PAGE_SIZE = 6;
 
    public ProductRepository(Application application) {
       Log.v(TAG, "ProductRepository()");
       MyDatabase db = MyDatabase.getDatabase(application);
       myDao = db.myDao();
       fb = FirebaseFirestore.getInstance();
-      collectionReference = fb.collection("products");
+      CollectionReference collectionReference = fb.collection("products");
    }
 
    public LiveData<PagedList<MyData>> getAllData() {
       Log.v(TAG, "getAllData()");
+      int PAGE_SIZE = 6;
       return new LivePagedListBuilder<>(
             myDao.readData(),
-            PAGE_SIZE)
+          PAGE_SIZE)
             .setBoundaryCallback(new BoundaryCallback<MyData>())
             .build();
    }
@@ -67,8 +68,9 @@ public class ProductRepository {
 
    private void fetchDataFromFireStore() {
       Query query;
-      if (lastIndexId <= 0) {
+     /* if (lastIndexId <= 0) {
          query = fb.collection("products")
+              .whereEqualTo("name","circle")
                .orderBy("name")
                .limit(PAGE_SIZE);
       } else {
@@ -76,7 +78,9 @@ public class ProductRepository {
                .orderBy("name")
                .startAfter(ds)
                .limit(PAGE_SIZE);
-      }
+      }*/
+     query=fb.collection("products");
+     query=query.whereEqualTo("name","circle");
 
 
       query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -129,13 +133,14 @@ public class ProductRepository {
       private MyDao mAsyncTaskDao;
 
       InsertAsyncTask(MyDao dao) {
+
          mAsyncTaskDao = dao;
       }
 
       @Override
       protected Void doInBackground(final MyData... params) {
          Log.v(TAG, "InsertAsyncTask.doInBackground()");
-         mAsyncTaskDao.addData(params[0]);
+         mAsyncTaskDao.insertData(params[0]);
          return null;
       }
    }
@@ -151,7 +156,7 @@ public class ProductRepository {
       @Override
       protected Void doInBackground(MyData... lists) {
          Log.v(TAG, "InsertDataInRoomAsyncTask.doInBackground()");
-         mAsyncTaskDao.addData(lists[0]);
+         mAsyncTaskDao.insertData(lists[0]);
          return null;
       }
    }*/

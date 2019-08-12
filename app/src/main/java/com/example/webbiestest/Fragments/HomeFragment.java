@@ -25,8 +25,6 @@ import com.example.webbiestest.ViewModel.ProductViewModel;
 import com.example.webbiestest.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-
 
 /**
  * A simple {@link Fragment} subclass.

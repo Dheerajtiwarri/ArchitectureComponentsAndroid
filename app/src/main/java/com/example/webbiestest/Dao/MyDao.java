@@ -3,6 +3,7 @@ package com.example.webbiestest.Dao;
 import androidx.paging.DataSource;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.webbiestest.MyData;
@@ -14,10 +15,13 @@ import com.example.webbiestest.MyData;
 @Dao
 public interface MyDao {
 
-    @Insert
-     void addData(MyData data);
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  void insertData(MyData data);
 
-    @Query("select * from users ORDER BY name ASC")
-     DataSource.Factory<Integer, MyData> readData();
-    
+  @Query("select * from users ORDER BY name ASC")
+  DataSource.Factory<Integer, MyData> readData();
+
+  @Query("delete from users")
+  void deleteAll();
+
 }

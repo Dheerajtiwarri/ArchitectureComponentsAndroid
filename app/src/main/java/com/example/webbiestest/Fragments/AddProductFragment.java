@@ -39,10 +39,8 @@ public class AddProductFragment extends Fragment {
     private EditText productName, imageUrl;
     public ProductViewModel productViewModel;
     private String url = "";
-    private View viewAddProductFragment;
     private ScaleGestureDetector sgd;
 
-    private FragmentAddProductBinding binding;
     Context context;
 
     @Override
@@ -50,8 +48,8 @@ public class AddProductFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         //viewAddProductFragment=inflater.inflate(R.layout.fragment_add_product, container, false);
-        binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_add_product, container, false);
-        viewAddProductFragment = binding.getRoot();
+        FragmentAddProductBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.fragment_add_product, container, false);
+        View viewAddProductFragment = binding.getRoot();
 
         productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
