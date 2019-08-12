@@ -45,9 +45,11 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
+
     //FireBase FireStore
     implementation 'com.google.firebase:firebase-core:17.0.1'
     implementation 'com.google.firebase:firebase-firestore:20.2.0'
+
 
     //Paging library
     implementation "androidx.paging:paging-runtime:$paging_version"

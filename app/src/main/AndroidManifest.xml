@@ -14,6 +14,7 @@
         android:roundIcon="@drawable/surprised"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name="com.example.archComponents.Activity.TestActivity">
 
         </activity>
@@ -32,6 +33,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".Activity.AddDataActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
     </application>
