@@ -2,7 +2,11 @@ package com.example.webbiestest.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -17,23 +21,25 @@ import java.util.Set;
 
 public class TestActivity extends AppCompatActivity {
 
-    private static final String TAG = "TestActivity";
-    private HashMap<String, ArrayList<String>> mHashMap = new HashMap<>();
-    private List<List<String>> queryList = new ArrayList<>();
-    private TextView textView;
+  private static final String TAG = "TestActivity";
+  private HashMap<String, ArrayList<String>> mHashMap = new HashMap<>();
+  private List<List<String>> queryList = new ArrayList<>();
+  private TextView textView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_test);
 
-        addingInitialValueOnHashMap();
-        printData();
+    // addingInitialValueOnHashMap();
+    //  printData();
 
-        textView = findViewById(R.id.test_textView);
+    textView = findViewById(R.id.test_textView);
 
-        QueryTest queryTest = new QueryTest();
-        queryTest.test();
+    spannableString();
+
+      /*  QueryTest queryTest = new QueryTest();
+        queryTest.test();*/
 
          /* ArrayList<String> test=new ArrayList<>();
           test.add("dheeraj");
@@ -41,57 +47,82 @@ public class TestActivity extends AppCompatActivity {
           test.add("rohan");
           int n=test.size();
           permute(test,0,n-1);*/
+  }
+
+  private void spannableString() {
+    Spannable word = new SpannableString("Your message");
+
+    word.setSpan(new ForegroundColorSpan(Color.BLUE), 0, word.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    textView.setText(word);
+
+    Spannable wordTwo = new SpannableString("Your new  5 mes 8 sage");
+
+    wordTwo.setSpan(new ForegroundColorSpan(Color.RED), 0, wordTwo.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    textView.append(wordTwo);
+
+    String text = textView.getText().toString();
+    String[] numbers = text.split("\\D+");
+    int sum = 0;
+    for (String number : numbers) {
+      try {
+        sum += Integer.parseInt(number);
+      } catch (Exception ex) {
+        //not an integer number
+      }
+    }
+    Log.i(TAG, "spannableString: " + sum);
+
+  }
+
+  private void addingInitialValueOnHashMap() {
+    String[] str = {"Flavour", "Source", "Form"};
+    String[] flavour = {"Chocolate", "Vanilla", "UnFlavour"};
+    String[] source = {"Rice", "Pea"};
+    String[] form = {"Powder", "Tablet"};
+
+    ArrayList<String> arrayList;
+
+    for (int i = 0; i < str.length; i++) {
+      arrayList = new ArrayList<>();
+      Log.i(TAG, "addingInitialValueOnHashMap: " + i);
+      if (i == 0)
+        for (int j = 0; j < flavour.length; j++) {
+          Log.i(TAG, "addingInitialValueOnHashMap: flavour " + flavour[j]);
+          arrayList.add(flavour[j]);
+        }
+      else if (i == 1) {
+        for (int j = 0; j < source.length; j++) {
+          Log.i(TAG, "addingInitialValueOnHashMap: source " + source[j]);
+          arrayList.add(source[j]);
+        }
+      } else {
+        for (int k = 0; k < form.length; k++) {
+          Log.i(TAG, "addingInitialValueOnHashMap: form " + form[k]);
+          arrayList.add(form[k]);
+        }
+      }
+      queryList.add(arrayList);
+      mHashMap.put(str[i], arrayList);
+
     }
 
-    private void addingInitialValueOnHashMap() {
-        String[] str = {"Flavour", "Source", "Form"};
-        String[] flavour = {"Chocolate", "Vanilla", "UnFlavour"};
-        String[] source = {"Rice", "Pea"};
-        String[] form = {"Powder", "Tablet"};
 
-        ArrayList<String> arrayList;
+  }
 
-        for (int i = 0; i < str.length; i++) {
-            arrayList = new ArrayList<>();
-            Log.i(TAG, "addingInitialValueOnHashMap: " + i);
-            if (i == 0)
-                for (int j = 0; j < flavour.length; j++) {
-                    Log.i(TAG, "addingInitialValueOnHashMap: flavour " + flavour[j]);
-                    arrayList.add(flavour[j]);
-                }
-            else if (i == 1) {
-                for (int j = 0; j < source.length; j++) {
-                    Log.i(TAG, "addingInitialValueOnHashMap: source " + source[j]);
-                    arrayList.add(source[j]);
-                }
-            } else {
-                for (int k = 0; k < form.length; k++) {
-                    Log.i(TAG, "addingInitialValueOnHashMap: form " + form[k]);
-                    arrayList.add(form[k]);
-                }
-            }
-            queryList.add(arrayList);
-            mHashMap.put(str[i], arrayList);
+  private void printData() {
+    if (mHashMap != null) {
+      StringBuilder data = new StringBuilder();
+      for (String key : mHashMap.keySet()) {
 
+        Log.i(TAG, "printData: key " + key);
+        for (String s : mHashMap.get(key)) {
+          Log.i(TAG, "printData: " + s);
+          data.append(s + " ");
         }
 
-
+      }
     }
-
-    private void printData() {
-        if (mHashMap != null) {
-            StringBuilder data = new StringBuilder();
-            for (String key : mHashMap.keySet()) {
-
-                Log.i(TAG, "printData: key " + key);
-                for (String s : mHashMap.get(key)) {
-                    Log.i(TAG, "printData: " + s);
-                    data.append(s + " ");
-                }
-
-            }
-        }
-    }
+  }
 
      /*private void logicImplementation() {
           HashMap<String, ArrayList<String>> tempHashMap = new HashMap<>();
@@ -134,54 +165,54 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-    /*
-     * Testing with final value
-     * */
+  /*
+   * Testing with final value
+   * */
 
 
-    class QueryTest {
+  class QueryTest {
 
-        public Set<Set<String>> multiply(List<List<String>> input) {
+    public Set<Set<String>> multiply(List<List<String>> input) {
 
-            Set<Set<String>> result = queryTest(input);
-            return result;
-        }
-
-        public Set<Set<String>> queryTest(List<List<String>> in) {
-            final Set<Set<String>> out = new HashSet<Set<String>>();
-            queryUtil(new ArrayList<List<String>>(in), new HashSet<String>(), out);
-            return out;
-        }
-
-        private void queryUtil(List<List<String>> in, Set<String> part, Set<Set<String>> out) {
-            if (in.isEmpty()) {
-                out.add(part);
-                return;
-            }
-            if (out.contains(part))
-                return;
-            List<List<String>> nextIn = new ArrayList<List<String>>(in);
-            for (String s : nextIn.remove(0)) {
-                Set<String> nextPart = new LinkedHashSet<String>(part);
-                nextPart.add(s);
-                queryUtil(nextIn, nextPart, out);
-            }
-        }
-
-        public void test() {
-            StringBuilder stringBuilder=new StringBuilder();
-            Set<Set<String>> result = multiply(queryList);
-            for (Set<String> stringSet : result) {
-                for (String string : stringSet) {
-                    Log.i(TAG, "test: " + string);
-                    stringBuilder.append(string + " ");
-                }
-                stringBuilder.append("\n \n ");
-                Log.i(TAG, "test: " + "\n\n");
-            }
-            textView.setText(stringBuilder);
-        }
+      Set<Set<String>> result = queryTest(input);
+      return result;
     }
+
+    public Set<Set<String>> queryTest(List<List<String>> in) {
+      final Set<Set<String>> out = new HashSet<Set<String>>();
+      queryUtil(new ArrayList<List<String>>(in), new HashSet<String>(), out);
+      return out;
+    }
+
+    private void queryUtil(List<List<String>> in, Set<String> part, Set<Set<String>> out) {
+      if (in.isEmpty()) {
+        out.add(part);
+        return;
+      }
+      if (out.contains(part))
+        return;
+      List<List<String>> nextIn = new ArrayList<List<String>>(in);
+      for (String s : nextIn.remove(0)) {
+        Set<String> nextPart = new LinkedHashSet<String>(part);
+        nextPart.add(s);
+        queryUtil(nextIn, nextPart, out);
+      }
+    }
+
+    public void test() {
+      StringBuilder stringBuilder = new StringBuilder();
+      Set<Set<String>> result = multiply(queryList);
+      for (Set<String> stringSet : result) {
+        for (String string : stringSet) {
+          Log.i(TAG, "test: " + string);
+          stringBuilder.append(string + " ");
+        }
+        stringBuilder.append("\n \n ");
+        Log.i(TAG, "test: " + "\n\n");
+      }
+      textView.setText(stringBuilder);
+    }
+  }
 
 
 }
