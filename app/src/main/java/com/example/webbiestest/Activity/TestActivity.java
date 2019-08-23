@@ -54,6 +54,7 @@ public class TestActivity extends AppCompatActivity {
 
     word.setSpan(new ForegroundColorSpan(Color.BLUE), 0, word.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     textView.setText(word);
+    textView.append(" ");
 
     Spannable wordTwo = new SpannableString("Your new  5 mes 8 sage");
 
