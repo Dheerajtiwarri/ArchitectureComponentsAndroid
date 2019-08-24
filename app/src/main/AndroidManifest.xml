@@ -9,18 +9,22 @@
         android:roundIcon="@drawable/surprised"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.BackgroundTaskActivity">
+        <activity android:name=".Activity.WorkerTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.TestActivity">
+        <activity android:name=".Activity.BackgroundTaskActivity">
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
+        <activity android:name=".Activity.TestActivity"></activity>
         <activity
             android:name=".ExtraExperiment.ImageZoomTest.ImageZoom"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -36,11 +40,10 @@
             android:enabled="true"
             android:exported="true" />
     </application>
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 </manifest>

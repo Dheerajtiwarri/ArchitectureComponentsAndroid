@@ -28,8 +28,7 @@ public class BackgroundTaskActivity extends AppCompatActivity {
   }
   public void onClickOfStart(View view)
   {
-   /* MediaPlayer mediaPlayer=MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
-    mediaPlayer.start();*/
+
     Toast.makeText(this, "some one click me :) ", Toast.LENGTH_SHORT).show();
     AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
    Intent intent=new Intent(".BrodcastReceiver.MyAlarm");
