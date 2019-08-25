@@ -3,6 +3,9 @@ package com.example.webbiestest.Worker;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -19,6 +22,8 @@ import com.example.webbiestest.R;
  * 2. periodic .. on which task initiated so many on given interval of time. :)
  */
 public class MyWork extends Worker {
+
+   static Ringtone r;
    public MyWork(@NonNull Context context, @NonNull WorkerParameters workerParams) {
       super(context, workerParams);
    }
@@ -28,7 +33,17 @@ public class MyWork extends Worker {
 
    public Result doWork() {
       getNotification("Hii Dheeraj...", "Notification generated... enjoy it..");
+      alarm(); 
       return Result.success();
+   }
+
+   public void alarm()
+   {
+      //activating alarm sound
+      Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+      r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+      //playing sound alarm
+      r.play();
    }
 
    /**
