@@ -1,4 +1,4 @@
-package com.example.archComponents.Fragments;
+package com.example.archComponents.ui.fragments;
 
 
 import android.os.Bundle;
@@ -19,9 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.archComponents.Adapter.DataAdapter;
-import com.example.archComponents.MyData;
-import com.example.archComponents.ViewModel.ProductViewModel;
+import com.example.archComponents.ui.adapter.DataAdapter;
+import com.example.archComponents.model.MyData;
+import com.example.archComponents.viewModel.ProductViewModel;
 import com.example.archComponents.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

@@ -1,4 +1,4 @@
-package com.example.archComponents.ExtraExperiment.ImageZoomTest;
+package com.example.archComponents.extraExperiment.ImageZoomTest;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -9,7 +9,7 @@ import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
 
 import com.example.archComponents.R;
-import com.example.archComponents.ExtraExperiment.ZoomableImageView;
+import com.example.archComponents.extraExperiment.ZoomableImageView;
 
 public class ImageZoom extends Activity {
 

@@ -3,21 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExtraExperiment.ImageZoomTest.SecondType.SecondTestActivity" >
+    tools:context=".extraExperiment.ImageZoomTest.SecondType.SecondTestActivity" >
     <Button
         android:id="@+id/enable_zoom"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="disable zoom"/>
 
-    <com.example.archComponents.CustomImageView
+    <com.example.archComponents.extraExperiment.CustomImageView
         android:id="@+id/zoom_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/enable_zoom"
         android:src="@drawable/download"/>
 
-    <com.example.archComponents.ExtraExperiment.ImageZoomTest.SecondType.DrawableView
+    <com.example.archComponents.extraExperiment.ImageZoomTest.SecondType.DrawableView
         android:id="@+id/drawble_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

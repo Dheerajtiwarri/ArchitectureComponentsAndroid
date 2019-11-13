@@ -1,4 +1,4 @@
-package com.example.archComponents.ExtraExperiment;
+package com.example.archComponents.extraExperiment;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -1,4 +1,4 @@
-package com.example.archComponents.Adapter;
+package com.example.archComponents.ui.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.archComponents.MyData;
+import com.example.archComponents.model.MyData;
 import com.example.archComponents.R;
 import com.example.archComponents.databinding.RecyclerviewItemBinding;
 

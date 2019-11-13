@@ -1,4 +1,4 @@
-package com.example.archComponents;
+package com.example.archComponents.utils;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -7,7 +7,8 @@ import android.widget.Toast;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
-import com.example.archComponents.ViewModel.ProductViewModel;
+import com.example.archComponents.model.MyData;
+import com.example.archComponents.viewModel.ProductViewModel;
 
 /**
  * Created by Dheeraj on 29-06-2019.

@@ -1,4 +1,4 @@
-package com.example.archComponents.Database;
+package com.example.archComponents.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -9,8 +9,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.archComponents.Dao.MyDao;
-import com.example.archComponents.MyData;
+import com.example.archComponents.dao.MyDao;
+import com.example.archComponents.model.MyData;
 
 /**
  * Created by Dheeraj on 14-05-2019.

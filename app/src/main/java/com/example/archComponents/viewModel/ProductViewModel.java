@@ -1,4 +1,4 @@
-package com.example.archComponents.ViewModel;
+package com.example.archComponents.viewModel;
 
 import android.app.Application;
 
@@ -7,9 +7,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.paging.PagedList;
 
-import com.example.archComponents.Dao.MyDao;
-import com.example.archComponents.MyData;
-import com.example.archComponents.Repository.ProductRepository;
+import com.example.archComponents.dao.MyDao;
+import com.example.archComponents.model.MyData;
+import com.example.archComponents.repository.ProductRepository;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.example.archComponents.ExtraExperiment.ImageZoomTest;
+package com.example.archComponents.extraExperiment.ImageZoomTest;
 
 
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.example.archComponents.ExtraExperiment.ImageZoomTest.SecondType;
+package com.example.archComponents.extraExperiment.ImageZoomTest.SecondType;
 
 
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.archComponents.CustomImageView;
+import com.example.archComponents.extraExperiment.CustomImageView;
 import com.example.archComponents.R;
 
 public class SecondTestActivity extends AppCompatActivity implements View.OnClickListener {

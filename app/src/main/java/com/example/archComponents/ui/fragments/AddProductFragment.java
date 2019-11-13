@@ -1,4 +1,4 @@
-package com.example.archComponents.Fragments;
+package com.example.archComponents.ui.fragments;
 
 
 import android.content.Context;
@@ -20,10 +20,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.archComponents.CustomImageView;
-import com.example.archComponents.MyHandlers;
-import com.example.archComponents.MyData;
-import com.example.archComponents.ViewModel.ProductViewModel;
+import com.example.archComponents.extraExperiment.CustomImageView;
+import com.example.archComponents.utils.MyHandlers;
+import com.example.archComponents.model.MyData;
+import com.example.archComponents.viewModel.ProductViewModel;
 import com.example.archComponents.R;
 import com.example.archComponents.databinding.FragmentAddProductBinding;
 

@@ -1,4 +1,4 @@
-package com.example.archComponents.Repository;
+package com.example.archComponents.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -9,9 +9,9 @@ import androidx.lifecycle.LiveData;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
-import com.example.archComponents.Dao.MyDao;
-import com.example.archComponents.Database.MyDatabase;
-import com.example.archComponents.MyData;
+import com.example.archComponents.dao.MyDao;
+import com.example.archComponents.database.MyDatabase;
+import com.example.archComponents.model.MyData;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;

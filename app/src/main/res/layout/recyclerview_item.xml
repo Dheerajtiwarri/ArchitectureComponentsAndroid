@@ -4,7 +4,7 @@
     <data>
         <variable
             name="products"
-            type="com.example.archComponents.MyData" />
+            type="com.example.archComponents.model.MyData" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -1,4 +1,4 @@
-package com.example.archComponents.Activity;
+package com.example.archComponents.ui.activity;
 
 
 import android.os.Bundle;
